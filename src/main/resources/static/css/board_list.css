@@ -1,0 +1,107 @@
+
+
+.content_header{
+    width : 100%;
+    height : 35px;
+    /*   border : 1px solid purple; */
+    box-sizing : border-box;
+}
+.content_list{
+    margin-top : 120px;
+    box-sizing : border-box;
+    /*   border : 1px solid red; */
+    height : auto;
+}
+.content_body{
+    /*   border: 1px solid blue; */
+}
+.table_board_list{
+    width : 800px;
+    min-height : 100px;
+    /*   border: 1px solid blue; */
+    table-layout: fixed;
+}
+.th_board_list{
+    background-color : lightgray;
+    font-size : 12px;
+    font-weight : 700;
+}
+.th_title{
+    width : 500px;
+    height : 30px;
+    text-align : left;
+    padding-left : 10px;
+    box-sizing : border-box;
+
+
+}
+.th_file{
+    width : 140px;
+}
+.tbl_img_format{
+    height: 100%;
+    width : 120px;
+    /*   border : 1px solid green; */
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    object-fit : scale-down;
+}
+.th_date{
+    width : 110px;
+}
+.tbl_list_tbody{
+    background-color : white;
+}
+.td_list_title{
+    width : 500px;
+    /*   border : 1px solid orange; */
+
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.td_list_file{
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    /*   border : 1px solid red; */
+
+}
+.td_list_date{
+    text-align : center;
+    color : gray;
+}
+.tr_list_row{
+    padding : 5px 10px;
+    font-size: 12px;
+    height : 60px;
+}
+
+/* Buttons */
+.button_nav_list_insert {
+    box-shadow:inset 0px 1px 0px 0px #97c4fe;
+    background-color:#257ddb;
+    border-radius:5px;
+    border:1px solid #337fed;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family: Arial, serif;
+    font-size:10px;
+    font-weight:bold;
+    padding:5px 10px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #1570cd;
+    float : right;
+    margin-bottom : 3px;
+}
+.button_nav_list_insert:hover {
+    background-color:#1e62d0;
+}
+.button_nav_list_insert:active {
+    position:relative;
+    top:1px;
+}

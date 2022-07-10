@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en">
+<html layout:decorate="~{fragments/navbar}">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{css/board_index.css}" rel="stylesheet"/>
+    <link th:href="@{css/navbar.css}" rel="stylesheet"/>
+    <link th:href="@{css/board_list.css}" rel="stylesheet"/>
+    <title>Carrot-i Homepage</title>
+</head>
+<body class="board_body">
+<div th:replace="fragments/navbar"></div>
+<div class="board_page">
+    <div th:insert="board_list"></div>
+
+</div>
+</body>
+</html>

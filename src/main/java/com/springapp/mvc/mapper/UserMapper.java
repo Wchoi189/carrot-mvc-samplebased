@@ -2,17 +2,14 @@ package com.springapp.mvc.mapper;
 
 
 import com.springapp.mvc.model.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 /**
  * Created by Tian Wang on 2015/3/24.
  */
-
+@Mapper
 public interface UserMapper {
     @Insert("insert into user(name, password) values(#{name}, #{password})")
     public void add(User user);

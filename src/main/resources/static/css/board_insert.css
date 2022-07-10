@@ -1,0 +1,147 @@
+/* Insert Page */
+.insert_box{
+    margin-top : 200px;
+    width : 500px;
+    height : 150px;
+    background-color: white;
+    display: flex;
+    flex-direction : column;
+    justify-content : center;
+    align-items : center;
+    border-radius : 5px;
+}
+
+.insert_heading{
+    font-size : 20px;
+    margin : 20px 10px 20px 0px;
+    font-weight : 600;
+    /*   border : 1px solid black; */
+    display : flex;
+    justify-content: center;
+
+}
+.heading_row{
+    width : 90%;
+    height: 40px;
+    /*  border : 1px solid blue;  */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top : 10px;
+
+}
+
+.insert_body{
+    width : 100%;
+    height : 70px;
+    /*    border: 1px solid red;  */
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    box-sizing: border-box;
+}
+.insert_body_content{
+    height : 70%;
+    width : 90%;
+    /*   border : 1px solid orange; */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction : column;
+    justify-content : center;
+}
+.insert_body_row1{
+    height : 30px;
+    width : 100%;
+    /*   border : 1px solid red; */
+    box-sizing: border-box;
+}
+.insert_body_row2{
+    height : 30px;
+    width : 100%;
+    /*    border : 1px solid red; */
+    box-sizing: border-box;
+    display: flex;
+    justify-content : space-between;
+    align-items : center;
+    margin-top : 3px;
+
+}
+input.insert_box_text_title{
+    width : 100%;
+    height: 25px;
+    box-sizing: border-box;
+    border : 1px solid lightgray;
+    font-size : 12px;
+}
+input.insert_box_text_file{
+    width : 83%;
+    height: 25px;
+    box-sizing: border-box;
+    border : 1px solid lightgray;
+    font-size : 12px;
+}
+/* 버턴 스타일 */
+/* save button */
+.save_button {
+    background-color:#007dc1;
+    border-radius:3px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:10px;
+    padding:4px 14px;
+    text-decoration:none;
+}
+/*.save_button:hover {*/
+/*    background-color:#0688fa;*/
+/*}*/
+.save_button:active {
+    position:relative;
+    top:1px;
+}
+
+/* //취소 버턴 */
+.cancel_button {
+    background-color:#000000;
+    border-radius:3px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:10px;
+    padding:4px 14px;
+    text-decoration:none;
+}
+/*.cancel_button:hover {*/
+/*    background-color:#0061a7;*/
+/*}*/
+.cancel_button:active {
+    position:relative;
+    top:1px;
+}
+
+
+/* 사진 업로드 버턴 */
+.insert_img_button {
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background-color:#ededed;
+    border-radius:3px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
+    cursor:pointer;
+    color:#000000;
+    font-family:Arial;
+    font-size:10px;
+    font-weight:bold;
+    padding:4px 10px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+}
+.insert_img_button:hover {
+    background-color:#dfdfdf;
+}
+.insert_img_button:active {
+    position:relative;
+    top:1px;
+}

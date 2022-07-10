@@ -3,10 +3,12 @@ package com.springapp.mvc.mapper;
 
 import com.springapp.mvc.model.BoardDTO;
 import org.apache.ibatis.annotations.*;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-
+@Configuration
+@Mapper
 public interface BoardMapperJava {
     @Select("SELECT * FROM board")
     List<BoardDTO> getBoardList();
