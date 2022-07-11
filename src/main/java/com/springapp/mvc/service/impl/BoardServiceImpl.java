@@ -39,7 +39,8 @@ public class BoardServiceImpl implements IBoardService {
     }
 
     @Override
-    public void insertBoard(BoardDTO theBoard) {
+    public boolean insertBoard(BoardDTO theBoard) {
         mapper.insertBoard(theBoard);
+        return false;
     }
 }

@@ -2,20 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
     <title>Title</title>
-    <head th:fragment="default_cssFragment">
-        <!-- 컨텐츠페이지의 CSS 영역이 들어감 -->
-        <th:block layout:fragment="css"></th:block>
+    <head th:fragment="configFragment">
+        <meta charset="UTF-8">
+        <!-- 공통으로 쓰이는 css파일을넣는다.-->
         <link th:href="@{css/board_default.css}" rel="stylesheet"/>
         <link th:href="@{css/navbar.css}" rel="stylesheet"/>
-
+        <!-- 컨텐츠페이지의 CSS 영역이 들어감 -->
+        <th:block layout:fragment="css"></th:block>
         <!-- 컨텐츠페이지의 스크립트 영역이 들어감 -->
         <th:block layout:fragment="script"></th:block>
-</head>
-<body>
-
-</body>
+    </head>
 </html>

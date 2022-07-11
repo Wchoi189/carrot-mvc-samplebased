@@ -3,6 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-    <header th:fragment="headerFragment"><h3>Carrot-i Homepage</h3></header>
+    <head th:fragment="headerFragment"><h3>Carrot-i Homepage</h3></head>
+    <th:block layout:fragment="navbar"></th:block>
+    <link th:href="@{css/navbar.css}" rel="stylesheet"/>
+    <link th:href="@{css/board_default.css}" rel="stylesheet"/>
 
+    <th:block layout:fragment="add-css"></th:block>
 </html>

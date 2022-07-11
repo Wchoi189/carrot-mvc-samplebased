@@ -2,23 +2,16 @@
 <html lang="en">
 <html xmlns:th="http//www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/board_default}">
-
+      layout:decorator="layouts/board_default">
 <head>
-    <title>목록</title>
-    <!-- content.html 고유 CSS 추가 -->
-    <th:block layout:fragment="css">
-        <link th:href="@{css/board_list.css}" rel="stylesheet" />
-    </th:block>
+    <!-- JQury from Google CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <!-- contento.html 고유 스크립트 추가 -->
-    <th:block layout:fragment="script">
-    <!--    <script>-->
-    <!--        alert("hello.html");-->
-    <!--    </script>-->
-    </th:block>
+
+    <link th:href="@{css/board_list.css}" rel="stylesheet" />
+        <title>목록</title>
 </head>
-
+<div th:replace="fragments/navbar :: headerFragment"></div>
     <div layout:fragment="content">
         <div class="content_list">
             <div class="content_header">
@@ -39,12 +32,14 @@
                     <tr th:each="boardList: ${boardList}" class="tr_list_row">
                         <td th:text="${boardList.title}" class="td_list_title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat.</td>
                         <td th:text="${boardList.file_name}" class="td_list_file"><div class="tbl_img_format"><img src="https://via.placeholder.com/100x60/f7c5c5"></div></td>
-                        <td th:text="${boardList.reg_date}" class="td_list_date">2020.01.15</td>
+                        <td th:text="${boardList.reg_date}"  class="td_list_date">2020.01.15</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <th:block layout:fragment="scripts">
+            <script src="/js/hello.js"></script>
+        </th:block>
     </div>
-
 </html>

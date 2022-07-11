@@ -7,11 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,7 +30,7 @@ private IBoardService boardService;
 
 
     @GetMapping("/")
-    public ModelAndView boardList () {
+    public ModelAndView boardList (Model model) {
         ModelAndView mav = new ModelAndView("board_list");
         List<BoardDTO> boardList = boardService.getBoardList();
         mav.addObject("boardList", boardList);
@@ -36,10 +38,10 @@ private IBoardService boardService;
     }
 
     @GetMapping( "/boardinsert")
-    public String boardInsert() {
+    public String board_insert() {
 //        boardDAO.insertBoard(theBoard);
         System.out.println("/insert");
-
         return "board_insert";
     }
+
 }
