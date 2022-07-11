@@ -1,5 +1,16 @@
+.board_body{
+    width : 1200px;
+    height : auto;
+}
+.board_page{
+    background-color: #eeeeee;
+    min-height: 1200px;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-
+}
 .content_header{
     width : 100%;
     height : 35px;
@@ -27,13 +38,11 @@
     font-weight : 700;
 }
 .th_title{
-    width : 500px;
+    width : 400px;
     height : 30px;
     text-align : left;
     padding-left : 10px;
     box-sizing : border-box;
-
-
 }
 .th_file{
     width : 140px;

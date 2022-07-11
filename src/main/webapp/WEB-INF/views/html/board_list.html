@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{navbar}">
+<html xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/board_default}">
+
 <head>
-    <meta charset="UTF-8">
-    <link th:href="@{css/board_list.css}" rel="stylesheet" />
     <title>목록</title>
+    <!-- content.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <link th:href="@{css/board_list.css}" rel="stylesheet" />
+    </th:block>
+
+    <!-- contento.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+    <!--    <script>-->
+    <!--        alert("hello.html");-->
+    <!--    </script>-->
+    </th:block>
 </head>
-<body>
-<div class="board_page">
-    <div th:replace="fragments/navbar"></div>
-    <div class="content_list">
-        <div class="content_header">
-            <a href="/boardInsert" class="button_nav_list_insert">글쓰기</a>
-        </div>
-        <div class="content_body">
-            <table class="table_board_list">
-                <thead class="th_board_list">
-                <tr>
-                    <th class="th_title">제목</th><th class="th_file">첨부파일</th><th class="th_date">작성 날짜</th>
-                </tr>
-                </thead>
-                <tbody class="tbl_list_tbody">
-                <tr th:each="title: ${boardList}" class="tr_list_row">
-                    <td th:text="${boardList.title}" class="td_list_title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat.</td>
-                    <td th:text="${boardList.file_name}" class="td_list_file"><div th:image="${board.image}" class="tbl_img_format"><img src="https://via.placeholder.com/100x60/f7c5c5"></div></td>
-                    <td th:text="${boardList.reg_date}" class="td_list_date">2020.01.15</td>
-                </tr>
-                </tbody>
-            </table>
+
+    <div layout:fragment="content">
+        <div class="content_list">
+            <div class="content_header">
+                <a th:href="@{boardinsert}" class="button_nav_list_insert">글쓰기</a>
+            </div>
+
+            <div class="content_body">
+                <table class="table_board_list">
+                    <thead class="th_board_list">
+                    <tr>
+                        <th class="th_title">제목</th><th class="th_file">첨부파일</th><th class="th_date">작성 날짜</th>
+                    </tr>
+                    </thead>
+                    <tbody class="tbl_list_tbody">
+                    <tr th:if="${boardList.empty}">
+                        <td colspan="2"> No Information Available </td>
+                    </tr>
+                    <tr th:each="boardList: ${boardList}" class="tr_list_row">
+                        <td th:text="${boardList.title}" class="td_list_title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat.</td>
+                        <td th:text="${boardList.file_name}" class="td_list_file"><div class="tbl_img_format"><img src="https://via.placeholder.com/100x60/f7c5c5"></div></td>
+                        <td th:text="${boardList.reg_date}" class="td_list_date">2020.01.15</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-</body>
+
 </html>

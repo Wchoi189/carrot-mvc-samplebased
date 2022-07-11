@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{css/board_default.css}" rel="stylesheet"/>
+    <link th:href="@{css/navbar.css}" rel="stylesheet"/>
+
+    <title>Carrot-i Homepage</title>
+<!--    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Atta Blog</title>-->
+
+    <!-- 각 페이지의 script가 작성될 위치 -->
+    <th:block layout:fragment="script"></th:block>
+
+    <!-- 각 페이지의 css가 작성될 위치 -->
+    <th:block layout:fragment="css"></th:block>
+</head>
+<head th:replace="fragments/default_css :: default_cssFragment"></head>
+<header th:replace="fragments/navbar ::headerFragment"></header>
+
+<div layout:fragment=”content”></div>
+
+
+</html>

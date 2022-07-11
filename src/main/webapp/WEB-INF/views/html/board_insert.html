@@ -1,17 +1,24 @@
 <!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/board_default}">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{navbar}">
 <head>
-  <meta charset="utf-8">
-  <link th:href="@{css/board_insert.css}" rel="stylesheet" />
-  <link th:href="@{css/navbar.css}" rel="stylesheet" />
-  <link th:href="@{css/board_index.css}" rel="stylesheet" />
-  <title>Insert</title>
+  <title>목록</title>
+  <!-- content.html 고유 CSS 추가 -->
+  <th:block layout:fragment="css">
+    <link th:href="@{css/board_insert.css}" rel="stylesheet" />
+  </th:block>
+
+  <!-- contento.html 고유 스크립트 추가 -->
+  <th:block layout:fragment="script">
+    <!--    <script>-->
+    <!--        alert("hello.html");-->
+    <!--    </script>-->
+  </th:block>
 </head>
-<body>
-<div class="board_page">
-<div th:replace="fragments/navbar"></div>
+<div layout:fragment="content">
   <div class="insert_box">
     <div class="heading_row">
       <div class="insert_heading">글쓰기</div>
@@ -37,6 +44,4 @@
     </div>
   </div>
 </div>
-
-</body>
 </html>

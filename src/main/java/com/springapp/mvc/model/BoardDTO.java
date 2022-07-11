@@ -1,5 +1,7 @@
 package com.springapp.mvc.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 
@@ -9,6 +11,7 @@ public class BoardDTO {
     private String file_name;
     private String save_path;
 //    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date reg_date;
 
 

@@ -10,40 +10,36 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class BoardController {
-    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
 
 
-private IBoardService boardDAO;
-    public BoardController(IBoardService boardDAO) {
-        this.boardDAO = boardDAO;
+private IBoardService boardService;
+    public BoardController(IBoardService boardService) {
+        this.boardService = boardService;
     }
+
 
     @GetMapping("/")
-    public String boardHome (Model theModel1) {
-        System.out.println("board_index.html");
-        List<BoardDTO> boardList = boardDAO.getBoardList();
-        theModel1.addAttribute("boardList", boardList);
-        return "board_index";
+    public ModelAndView boardList () {
+        ModelAndView mav = new ModelAndView("board_list");
+        List<BoardDTO> boardList = boardService.getBoardList();
+        mav.addObject("boardList", boardList);
+        return mav;
     }
 
-    @GetMapping("/boardList")
-    public String boardList (Model theModel) {
-        List<BoardDTO> boardList = boardDAO.getBoardList();
-        theModel.addAttribute("boardList", boardList);
-        System.out.println("list:" + boardList);
-        return "board_list";
-    }
-
-    @RequestMapping( "/boardInsert")
-    public String boardInsert(@RequestBody BoardDTO theBoard, Model theModel) {
+    @GetMapping( "/boardinsert")
+    public String boardInsert() {
 //        boardDAO.insertBoard(theBoard);
-//        System.out.println("/insert");
+        System.out.println("/insert");
+
         return "board_insert";
     }
 }
