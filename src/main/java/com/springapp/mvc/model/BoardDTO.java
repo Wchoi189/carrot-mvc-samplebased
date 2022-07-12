@@ -1,19 +1,16 @@
 package com.springapp.mvc.model;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 
 public class BoardDTO {
     private int board_id;
+    @NotNull(message ="title cannot be empty")
     private String title;
+    @NotNull(message ="file must be uploaded")
     private String file_name;
     private String save_path;
 //    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")

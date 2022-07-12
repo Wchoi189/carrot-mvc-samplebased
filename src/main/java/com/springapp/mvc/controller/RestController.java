@@ -5,10 +5,11 @@ import com.springapp.mvc.model.BoardDTO;
 import com.springapp.mvc.service.IBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
@@ -24,7 +25,7 @@ public class RestController {
     private BoardValidator boardValidator;
     @Valid
     @PostMapping("/insert")
-    public String boardSubmit(@ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, SessionStatus status, Model model){
+    public String boardSubmit(@Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, SessionStatus status, Model model){
         //컨트롤러 실행 여부
         System.out.println("RestController : insert ");
 //asdf
@@ -47,7 +48,7 @@ public class RestController {
            } catch(Exception e) {
                System.out.println("other");
            }
-        return "redirect:/board_list";
+        return "redirect:/board_list.html";
     }
 
 
