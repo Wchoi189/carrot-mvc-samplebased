@@ -85,8 +85,9 @@ input.insert_box_file_name{
     box-sizing: border-box;
     border : 1px solid lightgray;
     font-size : 12px;
-
-
+}
+.input_file_btn{
+    display: none;
 }
 /* 버턴 스타일 */
 /* save button */
@@ -158,3 +159,4 @@ input.insert_box_file_name{
     color:red; font-weight:bold;
 font-size: 5px;
 }
+
