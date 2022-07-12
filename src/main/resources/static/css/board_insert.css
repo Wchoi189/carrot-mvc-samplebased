@@ -154,3 +154,7 @@ input.insert_box_file_name{
     position:relative;
     top:1px;
 }
+.error {
+    color:red; font-weight:bold;
+font-size: 5px;
+}

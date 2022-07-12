@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -84,11 +86,21 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/","/resources/")
                 .setCacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES));
     }
-    private ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
-        SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.addDialect(new Java8TimeDialect());
-        engine.setTemplateResolver(templateResolver);
-        return engine;
+    @Bean
+        public ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
+            SpringTemplateEngine engine = new SpringTemplateEngine();
+            engine.addDialect(new Java8TimeDialect());
+            engine.setTemplateResolver(templateResolver);
+            return engine;
+    }
+    @Bean
+    public MultipartResolver mulitpartResolver() {
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setDefaultEncoding("utf-8");
+        //1 Megabyte = 1,000,000 bytes * 5 (MAX UPLOAD SIZE === 5MB)
+        commonsMultipartResolver.setMaxUploadSizePerFile(5000000);
+
+        return commonsMultipartResolver;
     }
 
 }

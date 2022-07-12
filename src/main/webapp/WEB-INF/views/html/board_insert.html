@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
+<script src=https://code.jquery.com/jquery-3.6.0.js></script>
+<!-- jQuery Validation Plugin-->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+
 <html lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -35,16 +38,16 @@
         <div class="insert_body_content">
 
           <!-- Board Insert Form -->
-          <form name="boardDTO" id="boardInsert" class="form" th:action="@{/board/insert}" th:object="${boardDTO}"  method="post">
+          <form name="boardDTO" id="boardInsert" class="form" th:action="@{/board/insert}" th:object="${boardDTO}"  method="post" enctype="multipart/form-data" >
             <div class="insert_body_row1">
               <label for="insert_title"></label>
-              <input type="text" id="insert_title" class="form-component insert_box_text_title" th:field="*{title}" name="insert_title" placeholder="제목을 입력하세요">
+              <input type="text" name="insert_title" id="insert_title" class="form-component insert_box_text_title" th:field="*{title}"  placeholder="제목을 입력하세요" required>
 
             </div>
             <div class="insert_body_row2_wrapper">
               <div class="insert_body_row2">
                 <label for="file_name"></label>
-                <input type="text" id="file_name" class="form-component insert_box_file_name" th:field="*{file_name}"  name="file_name" placeholder="선택된 파일 없음">
+                <input type="text" name="file_name" id="file_name" class="form-component insert_box_file_name" th:field="*{file_name}"   placeholder="선택된 파일 없음">
                 <a href="#" class="insert_img_button" onclick="uploadBtn()">찾아보기..</a>
 
               </div>
@@ -57,12 +60,56 @@
 </div>
 
   <script>
-    function boardSubmit() {
-      document.getElementById("GFG").submit();
-    }
+    // const frm = $("#boardInsert");
+    // frm.on("click", function (){
+    //   alert("hello");
+    // })
 
-    function uploadBtn(){
+      let frm = $("#boardInsert")
+      function boardSubmit() {
+        $("#boardInsert").submit();
+      }
 
-    }
+      $(function() {
+        frm.validate({
+          messages: {
+            title: {
+              required: "내용은 필수 입니다"
+            }
+          },
+          submitHandler: function(form) {
+            frm.submit();
+          }
+        })
+      })
+
+    // //Form reference
+    // const frm = $("#boardInsert")
+    //
+    // //Submit 버턴
+    // const submitBtm = document.getElementById("boardInsert");
+    //
+    // //field value
+    // const board_title = $("#boardInsert.insert_box_text_title").val();
+    // const file_name = $("#file_name").val();
+    // $("boardInsert.board_title")
+    // //Client-side 유효성 체크
+    // if (board_title == ""){
+    //   alert("내용을 입력해주세요!");
+    //   $("#boardDTO.board_title").focus();
+    //   return;
+    // }else if(file_name === ""){
+    //   alert("사진 하나 업로딩 해주세요!")
+    //   return;
+    // }
+    // if(!confirm("개사굴울 등록하실래요?")) return;
+    //
+    // submitBtm.submit();
+    // //사진 고르기
+    // function uploadBtn(){
+    //
+    // }
   </script>
+
+
 </html>
