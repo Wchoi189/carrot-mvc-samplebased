@@ -2,6 +2,7 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.BoardDTO;
 import com.springapp.mvc.model.BoardFileDTO;
+import com.springapp.mvc.service.IBoardFileService;
 import com.springapp.mvc.service.IBoardService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -27,13 +28,13 @@ import java.util.HashMap;
 public class FileBoardController {
 
     @Autowired
-    IBoardService boardService;
+    IBoardFileService boardFileService;
     @RequestMapping("/insertProc")
-    private String fileBoardInsertProc(@ModelAttribute BoardDTO boardDTO, @RequestPart MultipartFile
+    private String fileBoardInsertProc(@ModelAttribute BoardFileDTO boardFileDTO, @RequestPart MultipartFile
             files, HttpServletRequest request) throws IllegalStateException, IOException, Exception {
 
         if(files.isEmpty()) {
-            boardService.insertBoard(boardDTO);
+            boardFileService.insertBoardFile(boardFileDTO);
         } else {
             String fileName = files.getOriginalFilename(); // 사용자 컴에 저장된 파일명 그대로
             //확장자
@@ -54,18 +55,17 @@ public class FileBoardController {
             destinationFile.getParentFile().mkdirs(); //디렉토리
             files.transferTo(destinationFile);
 
-            boardService.insertBoard(boardDTO);
+            boardFileService.insertBoardFile(boardFileDTO);
 
             BoardFileDTO file = new BoardFileDTO();
-            file.setBoard_id(boardDTO.getBoard_id());
+            file.setBoard_id(boardFileDTO.getBoard_id());
             file.setFile_name(destinationFileName);
             file.setFileoriginname(fileName);
             file.setFileurl(fileUrl);
-
-//            boardService.insertBoard();
+            boardFileService.insertBoardFile(boardFileDTO);
         }
 
-        return "forward:/fileBoard/list"; //객체 재사용
+        return "forward:/board_list"; //객체 재사용
     }
 
 

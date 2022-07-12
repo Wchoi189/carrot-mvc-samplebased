@@ -48,6 +48,7 @@
               <div class="insert_body_row2">
                 <label for="file_name"></label>
                 <input type="text" name="file_name" id="file_name" class="form-component insert_box_file_name" th:field="*{file_name}"   placeholder="선택된 파일 없음">
+                <input type="file" name="file" id="input_file_btn" display="hidden" />
                 <a href="#" class="insert_img_button" onclick="uploadBtn()">찾아보기..</a>
 
               </div>
@@ -60,28 +61,9 @@
 </div>
 
   <script>
-    // const frm = $("#boardInsert");
-    // frm.on("click", function (){
-    //   alert("hello");
-    // })
 
-      let frm = $("#boardInsert")
-      function boardSubmit() {
-        $("#boardInsert").submit();
-      }
-
-      $(function() {
-        frm.validate({
-          messages: {
-            title: {
-              required: "내용은 필수 입니다"
-            }
-          },
-          submitHandler: function(form) {
-            frm.submit();
-          }
-        })
-      })
+  const input = document.getElementById("#input_file_btn")
+  $("#input_file_btn").on("")
 
     // //Form reference
     // const frm = $("#boardInsert")

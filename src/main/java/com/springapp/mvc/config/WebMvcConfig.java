@@ -93,14 +93,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
             engine.setTemplateResolver(templateResolver);
             return engine;
     }
-    @Bean
-    public MultipartResolver mulitpartResolver() {
-        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
-        commonsMultipartResolver.setDefaultEncoding("utf-8");
-        //1 Megabyte = 1,000,000 bytes * 5 (MAX UPLOAD SIZE === 5MB)
-        commonsMultipartResolver.setMaxUploadSizePerFile(5000000);
-
-        return commonsMultipartResolver;
-    }
 
 }
