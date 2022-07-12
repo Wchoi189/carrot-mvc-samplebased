@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service("boardService")
 //@Repository
-public class BoardServiceImpl implements IBoardService {
+public class BoardService implements IBoardService {
 
     @Autowired
     BoardMapperJava mapper;
@@ -39,8 +39,8 @@ public class BoardServiceImpl implements IBoardService {
     }
 
     @Override
-    public boolean insertBoard(BoardDTO theBoard) {
+    public void insertBoard(BoardDTO theBoard) {
         mapper.insertBoard(theBoard);
-        return false;
+
     }
 }

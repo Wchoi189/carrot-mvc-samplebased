@@ -62,7 +62,7 @@ public class FileBoardController {
             file.setFileoriginname(fileName);
             file.setFileurl(fileUrl);
 
-            boardService.insertBoard(file);
+//            boardService.insertBoard();
         }
 
         return "forward:/fileBoard/list"; //객체 재사용

@@ -13,7 +13,7 @@ public interface BoardMapperJava {
     @Select("SELECT * FROM board")
     List<BoardDTO> getBoardList();
 
-    @Select("SELECT * FROM board WHERE board_id = #{boardId}")
+    @Select("SELECT * FROM board WHERE board_id = #{board_id}")
     BoardDTO getBoardById(int board_id);
 
     @Insert("INSERT INTO board (title, file_name, save_path, reg_date) VALUES (#{title}, #{file_name}, #{save_path}, #{reg_date})")
@@ -22,7 +22,7 @@ public interface BoardMapperJava {
 
     @Update("UPDATE board SET title = #{title}, file_name = #{file_name}, save_path = #{save_path}, reg_date = #{reg_date} WHERE board_id = #{boardId}")
     void updateBoard(BoardDTO theBoard);
-    @Delete("DELETE FROM board WHERE board_id = #{boardId}")
+    @Delete("DELETE FROM board WHERE board_id = #{board_id}")
     void deleteBoardById(int board_id);
 
 
