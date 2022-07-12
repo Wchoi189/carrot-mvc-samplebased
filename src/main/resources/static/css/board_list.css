@@ -1,6 +1,8 @@
 .board_body{
     width : 1200px;
     height : auto;
+    display: flex;
+    justify-content: center;
 }
 .board_page{
     background-color: #eeeeee;
@@ -13,7 +15,7 @@
 }
 .content_header{
     width : 100%;
-    height : 35px;
+    height : 28px;
     /*   border : 1px solid purple; */
     box-sizing : border-box;
 }
@@ -22,9 +24,11 @@
     box-sizing : border-box;
     /*   border : 1px solid red; */
     height : auto;
+    width: fit-content;
+
 }
 .content_body{
-    /*   border: 1px solid blue; */
+    /*   border: 1px solid blue;
 }
 .table_board_list{
     width : 800px;
@@ -105,7 +109,7 @@
     text-decoration:none;
     text-shadow:0px 1px 0px #1570cd;
     float : right;
-    margin-bottom : 3px;
+    margin-bottom : 1px;
 }
 .button_nav_list_insert:hover {
     background-color:#1e62d0;
