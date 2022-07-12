@@ -38,10 +38,11 @@ private IBoardService boardService;
     }
 
     @GetMapping( "/boardinsert")
-    public String board_insert() {
-//        boardDAO.insertBoard(theBoard);
+    public ModelAndView board_insert() {
+        ModelAndView mav = new ModelAndView("board_insert");
+        mav.addObject("boardDTO", new BoardDTO());
         System.out.println("/insert");
-        return "board_insert";
+        return mav;
     }
 
 }

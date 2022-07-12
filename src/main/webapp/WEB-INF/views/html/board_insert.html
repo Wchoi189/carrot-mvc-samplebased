@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http//www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/board_default}">
 
 
@@ -17,36 +20,49 @@
     <!--        alert("hello.html");-->
     <!--    </script>-->
   </th:block>
+<div class="body">
 
-<div layout:fragment="content">
-  <div class="insert_box">
-    <div class="heading_row">
-      <div class="insert_heading">글쓰기</div>
-      <div class="button_wrapper">
-        <a href="#" class="cancel_button">취소</a>
-        <a href="#" class="save_button" onclick="submit()">저장</a>
-      </div>
-    </div>
-    <div class="insert_body">
-      <div class="insert_body_content">
-        <form id="boardInsert" th:action="@{/board/insert}" th:object="${yourFormBean}"  method="post">
-          <div class="insert_body_row1">
-            <label for="insert_title"></label>
-            <input type="text" id="insert_title" class="form-component" th:field="*{insert_title}" name="insert_title" placeholder="제목을 입력하세요">
-          </div>
-          <div class="insert_body_row2_wrapper">
-            <div class="insert_body_row2">
-              <label for="file_name"></label>
-              <input type="text" id="file_name" class="form-component" th:field="*{file_name}"  name="file_name" placeholder="선택된 파일 없음">
-              <a href="#" class="insert_img_button" onclick="uploadBtn()">찾아보기..</a>
-            </div>
+  <div layout:fragment="content">
+    <div class="insert_box">
+      <div class="heading_row">
+        <div class="insert_heading">글쓰기</div>
+        <div class="button_wrapper">
+          <a href="#" class="cancel_button">취소</a>
+          <a href="#" class="save_button" onclick="boardSubmit()">저장</a>
         </div>
-        </form>
+      </div>
+      <div class="insert_body">
+        <div class="insert_body_content">
+
+          <!-- Board Insert Form -->
+          <form name="boardDTO" id="boardInsert" class="form" th:action="@{/board/insert}" th:object="${boardDTO}"  method="post">
+            <div class="insert_body_row1">
+              <label for="insert_title"></label>
+              <input type="text" id="insert_title" class="form-component insert_box_text_title" th:field="*{title}" name="insert_title" placeholder="제목을 입력하세요">
+
+            </div>
+            <div class="insert_body_row2_wrapper">
+              <div class="insert_body_row2">
+                <label for="file_name"></label>
+                <input type="text" id="file_name" class="form-component insert_box_file_name" th:field="*{file_name}"  name="file_name" placeholder="선택된 파일 없음">
+                <a href="#" class="insert_img_button" onclick="uploadBtn()">찾아보기..</a>
+
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
-  <script = "javascript">
-      var title = ${'#insert_title'}
+
+  <script>
+    function boardSubmit() {
+      document.getElementById("GFG").submit();
+    }
+
+    function uploadBtn(){
+
+    }
   </script>
 </html>

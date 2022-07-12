@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http//www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layouts/board_default">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <!-- JQury from Google CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -32,7 +34,7 @@
                         </tr>
                         <tr th:each="boardList: ${boardList}" class="tr_list_row">
                             <td th:text="${boardList.title}" class="td_list_title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat.</td>
-                            <td th:text="${boardList.file_name}" class="td_list_file"><div class="tbl_img_format"><img src="https://via.placeholder.com/100x60/f7c5c5"></div></td>
+                            <td th:img="${boardList.save_path}" class="td_list_file"><img src="https://via.placeholder.com/100x60/f7c5c5" /></td>
                             <td th:text="${boardList.reg_date}"  class="td_list_date">2020.01.15</td>
                         </tr>
                         </tbody>

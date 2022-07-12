@@ -75,6 +75,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-collapse:collapse;
 }
 .td_list_file{
     display : flex;
