@@ -27,7 +27,7 @@ public class RestController {
     public String boardSubmit(@ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, SessionStatus status, Model model){
         //컨트롤러 실행 여부
         System.out.println("RestController : insert ");
-
+//asdf
         //유효성 체크
         boardValidator.validate(boardDTO, result);
 
