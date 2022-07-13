@@ -7,8 +7,10 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.FilterRegistration;
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
+import java.io.File;
 
 public class AppInitializer implements WebApplicationInitializer {
     @Override
@@ -41,5 +43,11 @@ public class AppInitializer implements WebApplicationInitializer {
         filter.setInitParameter("encoding", "UTF-8");
         filter.addMappingForServletNames(null, false, "dispatcher");
         // Filter 설정 -e
+
+        //Upload directory 설정
+        File uploadDirectory = new File("C://ckupload/");
+        MultipartConfigElement multipartConfigElement = new  MultipartConfigElement(uploadDirectory.getAbsolutePath(), 1000000 * 5, 1000000 * 5, 100000 / 2);
+        servlet.setMultipartConfig(multipartConfigElement);
+
     }
 }
