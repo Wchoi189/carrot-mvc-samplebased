@@ -49,11 +49,11 @@ public class AppContext {
         multipartResolver.setMaxUploadSize(5000000);
         return multipartResolver;
     }
-    @Bean
-    public String uploadPath (){
-        String path = "/upload";
-        return path;
-    }
+//    @Bean
+//    public String uploadPath (){
+//        String path = "/upload";
+//        return path;
+//    }
 
 
 }
