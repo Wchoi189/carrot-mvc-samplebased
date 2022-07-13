@@ -32,6 +32,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 @Controller
 public class BoardController {
@@ -67,7 +68,7 @@ public class BoardController {
     }
     @Valid
     @PostMapping("/boardinsert")
-    public String boardSubmit(@Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, HttpServletRequest request, BindingResult result, MultipartFile files) throws IllegalStateException, IOException, Exception {
+    public String boardSubmit(@Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, @RequestParam(value="input_file_btn", required = false) MultipartFile files) throws IllegalStateException, IOException, Exception {
         //컨트롤러 실행 여부
         System.out.println("Board controller insert method running..");
 
@@ -122,16 +123,31 @@ public class BoardController {
 //                boardFileService.insertBoardFile(file);
 //            }
 
+//
+//            if( !files.isEmpty() ) {   //---파일이 없으면 true를 리턴. false일 경우에만 처리함.
+//                String file_name = boardDTO.getFile_name();
+//                File converFile = new File(fileDir, file_name);
+//                files.transferTo(converFile);  //--- 저장할 경로를 설정 해당 경로는 각자 원하는 위치로 설정하면 됩니다. 다만, 해당 경로에 접근할 수 있는 권한이 없으면 에러 발생
+////                boardDTO.setSave_path(fileDir + file_name);
+//                System.out.println("files is not empty..");
+//            }
 
                 //DB에 저장
             System.out.println(boardDTO);
-            boardDTO.setSave_path("c:/ckupload/"+boardDTO.getFile_name());
+            String file_name = boardDTO.getFile_name();
+            boardDTO.setSave_path(fileDir + file_name);
             boardDTO.setReg_date(new Date());
+//            if( !files.isEmpty() ) {
+//
+//                File converFile = new File(fileDir, file_name);
+//                System.out.println("files is not empty..");
+//            }
             System.out.println(boardDTO);
             boardService.insertBoard(boardDTO);
-            if (boardDTO == null) {
-                System.out.println("insert failed");
-            }
+
+        if (boardDTO == null) {
+            System.out.println("insert failed");
+        }
         } catch(DataAccessException e){
             System.out.println("database access problems");
         } catch(Exception e) {

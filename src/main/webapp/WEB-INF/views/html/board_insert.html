@@ -29,7 +29,7 @@
       <div class="heading_row">
         <div class="insert_heading">글쓰기</div>
         <div class="button_wrapper">
-          <a href="#" class="cancel_button" onclick="onReset()">취소</a>
+          <a href="/" class="cancel_button" onclick="onReset()">취소</a>
           <a href="#" class="save_button" onclick="boardSubmit()">저장</a>
         </div>
       </div>
@@ -79,6 +79,7 @@
     function boardSubmit(){
       const title = document.getElementById("insert_title").value;
       const file_name = document.getElementById("input_file_btn").value;
+      const
       const submitBtn = document.getElementById("boardInsert");
 
       // if(title ==""){
@@ -91,6 +92,10 @@
       submitBtn.submit();
     }
 
+    function onReset() {
+      location.href="/board_insert.html";
+      alert("reset")
+    }
 
     //파일명을 text field에 출력
   //   function myFunction() {

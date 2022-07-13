@@ -13,6 +13,10 @@
     align-items: center;
 
 }
+.selected tr{
+    background-color: rgba(41, 103, 182, 0.89);
+    color: #FFF;
+}
 .content_header{
     width : 100%;
     height : 28px;
