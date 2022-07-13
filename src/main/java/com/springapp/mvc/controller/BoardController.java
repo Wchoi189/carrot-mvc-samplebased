@@ -32,18 +32,13 @@ import java.util.List;
 @Controller
 public class BoardController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    private String fileDir = "/target/springmvc-carrot/";
-
-
+    @Autowired
     private IBoardService boardService;
     @Autowired
     private BoardValidator boardValidator;
     @Autowired
     private BoardFileService boardFileService;
 
-    public BoardController(IBoardService boardService) {
-        this.boardService = boardService;
-    }
 
     @Autowired
     ServletContext servletContext;
@@ -80,7 +75,7 @@ public class BoardController {
         }
 
         String path = session.getServletContext().getRealPath("/");
-        session.getServletContext().getContextPath()
+        session.getServletContext().getContextPath();
         String filename = file.getOriginalFilename();
         System.out.println(path + " " + filename);
 
@@ -103,42 +98,12 @@ public class BoardController {
 
         try {
 
-//            System.out.println("multipart running");
-//            MultipartFile multipartFile = boardDTO.getBoard_image();
-//            System.out.println("multipartfile:"+ multipartFile);
-//            if(multipartFile != null || !multipartFile.isEmpty()){
-//                String fileName = servletContext.getRealPath("/") + "resources\\images\\" + multipartFile.getOriginalFilename();
-//                System.out.println("multipart not null");
-            //DB에 저장
-
-//                String file_name = boardDTO.getFile_name();
-//                boardDTO.setSave_path(fileDir + file_name);
-
-
-//            try {
-//                multipartFile.transferTo(new File(fileName));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
-
             //DB에 저장
             System.out.println(boardDTO);
-//            String file_name = boardDTO.getFile_name();
-            boardDTO.setSave_path(fileDir);
+            boardDTO.setSave_path(path+filename);
             boardDTO.setReg_date(new Date());
             System.out.println(boardDTO);
             boardService.insertBoard(boardDTO);
-
-//        if (boardDTO == null) {
-//            System.out.println("insert failed");
-//        }
-//        } catch(DataAccessException e){
-//            System.out.println("database access problems");
-//        } catch(Exception e) {
-//            System.out.println("other");
-//        }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
