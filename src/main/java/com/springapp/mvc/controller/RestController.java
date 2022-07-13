@@ -21,37 +21,6 @@ public class RestController {
     @Autowired
     private IBoardService boardService;
 
-    @Autowired
-    private BoardValidator boardValidator;
-    @Valid
-    @PostMapping("/insert")
-    public String boardSubmit(@Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, SessionStatus status, Model model){
-        //컨트롤러 실행 여부
-        System.out.println("RestController : insert ");
-//asdf
-        //유효성 체크
-        boardValidator.validate(boardDTO, result);
-
-        // Empty 이다면 리턴. 조건은 BoardValidator에서 정의
-        if (result.hasErrors()) {
-            return "boardDTO";
-        }
-
-        try {
-            //DB에 저장
-            boardService.insertBoard(boardDTO);
-            if (boardDTO == null) {
-                System.out.println("insert failed");
-            }
-            } catch(DataAccessException e){
-               System.out.println("database access problems");
-           } catch(Exception e) {
-               System.out.println("other");
-           }
-        return "redirect:/board_list.html";
-    }
-
-
 
 
     @RequestMapping("/list.json")

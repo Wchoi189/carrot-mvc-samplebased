@@ -16,11 +16,11 @@ public interface BoardMapperJava {
     @Select("SELECT * FROM board WHERE board_id = #{board_id}")
     BoardDTO getBoardById(int board_id);
 
-    @Insert("INSERT INTO board (title, file_name, save_path, reg_date) VALUES (#{title}, #{file_name}, #{save_path}, #{reg_date})")
+    @Insert("INSERT INTO board (title, file_name, save_path, reg_date) VALUES(#{title}, #{file_name}, #{save_path}, #{reg_date})")
     @Options(useGeneratedKeys=true, keyProperty="board_id")
     void insertBoard(BoardDTO theBoard);
 
-    @Update("UPDATE board SET title = #{title}, file_name = #{file_name}, save_path = #{save_path}, reg_date = #{reg_date} WHERE board_id = #{boardId}")
+    @Update("UPDATE board SET title = #{title}, file_name = #{file_name}, save_path = #{save_path}, reg_date = #{reg_date} WHERE board_id = #{board_id}")
     void updateBoard(BoardDTO theBoard);
     @Delete("DELETE FROM board WHERE board_id = #{board_id}")
     void deleteBoardById(int board_id);

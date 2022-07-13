@@ -151,7 +151,13 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.21</version>
         </dependency>
-
+        <!-- SQL 로그 출력 -->
+        <!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4 -->
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+            <version>1.16</version>
+        </dependency>
         <!--OpenEJB :: JavaEE Full API Log4j provided dependency-->
         <dependency>
             <groupId>org.apache.openejb</groupId>
@@ -182,6 +188,8 @@
         <artifactId>commons-fileupload</artifactId>
         <version>1.4</version>
     </dependency>
+
+
     </dependencies>
 
 

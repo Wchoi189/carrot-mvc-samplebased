@@ -37,7 +37,7 @@
         <div class="insert_body_content">
 
           <!-- Board Insert Form -->
-          <form name="boardDTO" id="boardInsert" class="form" th:action="@{/board/insert}" th:object="${boardDTO}"  method="post" enctype="multipart/form-data" >
+          <form name="boardDTO" id="boardInsert" class="form" th:action="@{/insert}" th:object="${boardDTO}"  method="post" enctype="multipart/form-data" >
             <div class="insert_body_row1">
               <label for="insert_title"></label>
               <input type="text" name="insert_title" id="insert_title" class="form-component insert_box_text_title" th:field="*{title}" placeholder="제목을 입력하세요" required>
@@ -45,8 +45,9 @@
             </div>
             <div class="insert_body_row2_wrapper">
               <div class="insert_body_row2">
-                <input type="text" name="file_name" id="file_name" class="form-component insert_box_file_name" th:field="*{file_name}" placeholder="선택된 파일 없음">
+                <input type="text" name="file_name" id="file_name" class="form-component insert_box_file_name" th:field="*{file_name}" placeholder="선택된 파일 없음" readonly>
                 <input type="file" name="file" id="input_file_btn" accept=".jpg, .png" style="display: none"/>
+
                 <label for="file_name" >
                   <a href="#" class="insert_img_button" onclick="uploadFile()">찾아보기..</a>
                 </label>
@@ -58,15 +59,21 @@
     </div>
   </div>
 </div>
-
   <script>
-
+    //Retrieve value of input file and append to field
+    $('input[type="file"]').change(function(e){
+      let fileName = e.target.files[0].name;
+      alert("fileName : " + fileName);
+      $('input#file_name').val(fileName);
+    })
+  </script>
+  <script>
   //HTML LINK TO BUTTON CONVERSION
     function uploadFile(){
       const input = document.getElementById("input_file_btn")
       input.click();
-      const filename = document.getElementById("input_file_btn").val();
-
+      // const filename = document.getElementById("input_file_btn").value;
+      // alert("filename : " + filename)
     }
 
     function boardSubmit(){
@@ -74,15 +81,16 @@
       const file_name = document.getElementById("input_file_btn").value;
       const submitBtn = document.getElementById("boardInsert");
 
-      if(title ==""){
-        alert("내용을 입력하세요");
-        $("#boardInsert.insert_title").focus();
-        return;
-      }
+      // if(title ==""){
+      //   alert("내용을 입력하세요");
+      //   $("#boardInsert.insert_title").focus();
+      //   return;
+      // }
       // alert("title + file_name : " + title + file_name);
       if(!confirm("게시글을 등록 하실래요?")) return;
       submitBtn.submit();
     }
+
 
     //파일명을 text field에 출력
   //   function myFunction() {
