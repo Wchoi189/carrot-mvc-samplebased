@@ -1,4 +1,4 @@
-package com.springapp.mvc.config;
+package com.springapp.mvc.board.config;
 
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.apache.commons.dbcp.BasicDataSource;
@@ -13,7 +13,7 @@ import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan("com.springapp.mvc.mapper")
+@MapperScan("com.springapp.mvc.board.mapper")
 public class AppContext {
     @Bean("data")
     public DataSource dataSource() {
@@ -42,6 +42,7 @@ public class AppContext {
     public LayoutDialect layoutDialect() {
         return new LayoutDialect();
     }
+
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
@@ -50,11 +51,5 @@ public class AppContext {
         multipartResolver.setMaxUploadSize(5 * 1024 * 1024);
         return multipartResolver;
     }
-//    @Bean
-//    public String uploadPath (){
-//        String path = "/upload";
-//        return path;
-//    }
-
 
 }

@@ -1,6 +1,5 @@
-package com.springapp.mvc.config;
+package com.springapp.mvc.board.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,8 +20,6 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import java.util.concurrent.TimeUnit;
 
 @Configuration

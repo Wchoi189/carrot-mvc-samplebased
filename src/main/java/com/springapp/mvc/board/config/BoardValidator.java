@@ -1,6 +1,6 @@
-package com.springapp.mvc.config;
+package com.springapp.mvc.board.config;
 
-import com.springapp.mvc.model.BoardDTO;
+import com.springapp.mvc.board.model.BoardDTO;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

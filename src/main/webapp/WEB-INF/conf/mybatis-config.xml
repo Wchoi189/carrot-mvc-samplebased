@@ -20,6 +20,6 @@
               <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
        </settings>
        <typeAliases>
-              <package name="com.springapp.mvc.model"/>
+              <package name="com.springapp.mvc.board.model"/>
        </typeAliases>
 </configuration>

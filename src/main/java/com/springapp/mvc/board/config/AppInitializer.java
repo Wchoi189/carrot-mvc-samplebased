@@ -1,4 +1,4 @@
-package com.springapp.mvc.config;
+package com.springapp.mvc.board.config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -41,11 +41,6 @@ public class AppInitializer implements WebApplicationInitializer {
         filter.setInitParameter("encoding", "UTF-8");
         filter.addMappingForServletNames(null, false, "dispatcher");
         // Filter 설정 -e
-
-//        //Upload directory 설정
-//        File uploadDirectory = new File("/");
-//        MultipartConfigElement multipartConfigElement = new  MultipartConfigElement(uploadDirectory.getAbsolutePath(), 1000000 * 5, 1000000 * 5, 100000 / 2);
-//        servlet.setMultipartConfig(multipartConfigElement);
 
     }
 }

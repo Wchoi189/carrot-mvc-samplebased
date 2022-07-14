@@ -40,28 +40,8 @@
                         </tbody>
                     </table>
                 </div>
-
-            <!-- Modal-->
-                <div id="modal" class="modal-overlay">
-                    <div class="modal-window">
-                        <div class="title">
-                            <h2>모달</h2>
-                        </div>
-                        <div class="close-area">X</div>
-                        <div class="content">
-                            <p>가나다라마바사 아자차카타파하</p>
-                            <p>가나다라마바사 아자차카타파하</p>
-                            <p>가나다라마바사 아자차카타파하</p>
-                            <p>가나다라마바사 아자차카타파하</p>
-
-                        </div>
-                    </div>
-                </div>
-
         </div>
     </div>
-
-
 </div>
 </div>
 <script>
@@ -76,23 +56,12 @@
     }
 </script>
 <script>
-    //전역 변수
-    // const tr_id = $(this).data("id");
-    <!--  상세정보 페이지  -->
-
        $(".tr_list_row").click(function() {
         const tr_id = $(this).data("id");
         /*   location.href="read?board_id=" + tr_id;*/
            // alert("id"+ tr_id);
            window.open("read?board_id="+tr_id, '_blank', 'location=yes, height=400, width=450, top=300, right=700, scrollbar=no, status=yes' );
     });
-
-
-
-    /* 상세 창 뛰우기 */
-    // function btn_info(){
-    //     $(".board_info").show();
-    // }
 
     /* 공유 창 닫기 BOX 밖에 클릭시 */
     $(document).mouseup(function(e){
@@ -106,15 +75,6 @@
     function btn_close(){
         $(".board_info").hide();
     }
-    // 창
-    // function showPopup(id) {
-    //     const popup = document.getElementsByClassName("board_info");
-    //     popup.style.display = 'block';
-    //
-    // }
-
-
-//  Modal
 
     //모달창이 켜지게 하기
     const modal = document.getElementsByClassName("tr_list_row");

@@ -1,8 +1,7 @@
-package com.springapp.mvc.service;
+package com.springapp.mvc.board.service;
 
 
-import com.springapp.mvc.model.BoardDTO;
-import com.springapp.mvc.model.BoardFileDTO;
+import com.springapp.mvc.board.model.BoardDTO;
 
 import java.util.List;
 

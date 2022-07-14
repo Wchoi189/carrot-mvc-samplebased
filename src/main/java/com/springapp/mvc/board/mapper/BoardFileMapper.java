@@ -1,7 +1,6 @@
-package com.springapp.mvc.mapper;
+package com.springapp.mvc.board.mapper;
 
-import com.springapp.mvc.model.BoardDTO;
-import com.springapp.mvc.model.BoardFileDTO;
+import com.springapp.mvc.board.model.BoardFileDTO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.context.annotation.Configuration;
 

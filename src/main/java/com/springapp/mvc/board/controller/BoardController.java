@@ -1,10 +1,10 @@
-package com.springapp.mvc.controller;
+package com.springapp.mvc.board.controller;
 
 
-import com.springapp.mvc.config.BoardValidator;
-import com.springapp.mvc.model.BoardDTO;
-import com.springapp.mvc.service.IBoardService;
-import com.springapp.mvc.service.impl.BoardFileService;
+import com.springapp.mvc.board.config.BoardValidator;
+import com.springapp.mvc.board.model.BoardDTO;
+import com.springapp.mvc.board.service.IBoardService;
+import com.springapp.mvc.board.service.impl.BoardFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +53,7 @@ public class BoardController {
         ModelAndView mav = new ModelAndView("board_list");
         List<BoardDTO> boardList = boardService.getBoardList();
         mav.addObject("boardList", boardList);
+        mav.addObject("localDate", LocalDate.now());
         return mav;
     }
 

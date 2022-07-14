@@ -1,8 +1,8 @@
-package com.springapp.mvc.service.impl;
+package com.springapp.mvc.board.service.impl;
 
-import com.springapp.mvc.mapper.BoardFileMapper;
-import com.springapp.mvc.model.BoardFileDTO;
-import com.springapp.mvc.service.IBoardFileService;
+import com.springapp.mvc.board.mapper.BoardFileMapper;
+import com.springapp.mvc.board.model.BoardFileDTO;
+import com.springapp.mvc.board.service.IBoardFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

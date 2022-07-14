@@ -1,10 +1,10 @@
-package com.springapp.mvc.service.impl;
+package com.springapp.mvc.board.service.impl;
 
 
 
-import com.springapp.mvc.mapper.BoardMapperJava;
-import com.springapp.mvc.model.BoardDTO;
-import com.springapp.mvc.service.IBoardService;
+import com.springapp.mvc.board.mapper.BoardMapperJava;
+import com.springapp.mvc.board.model.BoardDTO;
+import com.springapp.mvc.board.service.IBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
