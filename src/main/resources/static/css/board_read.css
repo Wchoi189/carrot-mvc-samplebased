@@ -1,23 +1,23 @@
 /* 상세정보 창 */
 .board_info{
-    width: 600px;
-    height: 420px;
+    width: 340px;
+    height: 300px;
     background-color: white;
     /*border: 1px solid orange;*/
     margin: 0px auto;
     border-radius: 10px;
     position:relative;
-    display: none;
+
 }
 .info_header_container{
     width: 100%;
 
 }
 .info_header{
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 900;
     font-family: "Nanum-Gothic";
-    padding: 20px 10px 15px 20px;
+    padding: 20px 10px 10px 20px;
     color: #3f6fa3;
 }
 .info_body_container{
@@ -31,13 +31,13 @@
     justify-content: flex-end;
     align-items: flex-end;
     /*border: 1px solid blue;*/
-    height: 50px;
+    height: 20px;
     width: 90%;
 }
 
 .board_img_tag{
-    height: 260px;
-    width: 550px;
+    height: 160px;
+    width: 300px;
 }
 /* Buttons */
 /*Board info - 상세*/

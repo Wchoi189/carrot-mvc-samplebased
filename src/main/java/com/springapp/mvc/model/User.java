@@ -5,10 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by Tian Wang on 2015/3/24.
- */
-
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;

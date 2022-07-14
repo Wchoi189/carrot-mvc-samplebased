@@ -11,15 +11,17 @@
 </head>
 
 <body>
-<div class="board_container" th:each="boardread: ${boardread}">
-    <div class="info_header_container">
-        <div class="info_header" th:text="${boardread.title}">Header Line</div>
-    </div>
-    <div class="info_body_container">
-        <img th:src="${(boardread.save_path != null ? '/' + boardread.file_name : 'https://via.placeholder.com/550x260/d3d3d3')}" class="board_img_tag"/></div>
-    <div class="info_footer_container">
-        <div class="info_footer_content">
-            <a href="#" class="btn_close" onclick="window.close()">닫기</a>
+<div class="board_info">
+    <div class="board_container" th:each="boardread: ${boardread}">
+        <div class="info_header_container">
+            <div class="info_header" th:text="${boardread.title}">Header Line</div>
+        </div>
+        <div class="info_body_container">
+            <img th:src="${(boardread.save_path != null ? '/' + boardread.file_name : 'https://via.placeholder.com/550x260/d3d3d3')}" class="board_img_tag"/></div>
+        <div class="info_footer_container">
+            <div class="info_footer_content">
+                <a href="#" class="btn_close" onclick="window.close()">닫기</a>
+            </div>
         </div>
     </div>
 </div>
