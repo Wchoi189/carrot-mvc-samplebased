@@ -8,13 +8,13 @@
 <head>
     <!-- JQury from Google CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-
     <link th:href="@{css/board_list.css}" rel="stylesheet" />
-        <title>목록</title>
+    <link th:href="@{css/navbar.css}" rel="stylesheet"/>
+    <title>목록</title>
 </head>
+<div class="board_page">
+    <div th:replace="fragments/navbar"></div>
 <div class = "board_body">
-    <div th:replace="fragments/navbar :: headerFragment"></div>
         <div layout:fragment="content">
             <div class="content_list">
                 <div class="content_header">
@@ -30,21 +30,10 @@
                         <tbody class="tbl_list_tbody">
                         <!--*기본 설정 : 숨김(HIDE)  -->
                         <div class="board_info">
-                            <div class="board_container">
-                                <div class="info_header_container">
-                                    <div class="info_header">Header Line</div>
-                                </div>
-                                <div class="info_body_container"><img src="https://via.placeholder.com/550x260/d3d3d3" alt="board_img_info" /></div>
-                                <div class="info_footer_container">
-                                    <div class="info_footer_content">
-                                        <a href="#" class="btn_close" onclick="btn_close()">닫기</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <tr th:if="${boardList.empty}">
                             <td colspan="2"> No Information Available </td>
-                        <tr th:each="boardList: ${boardList}" class="tr_list_row" onclick='btn_info()' th:data-id="${boardList.board_id}" >
+                        <tr th:each="boardList: ${boardList}" class="tr_list_row" th:data-id="${boardList.board_id}" >
 
                             <td th:text="${boardList.title}" class="td_list_title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat.</td>
                             <td class="td_list_file"><img class="board_img_tag" th:if="${boardList.save_path}" th:src="'/'+ ${boardList.file_name}" /> <img th:unless="${boardList.save_path}" src="https://via.placeholder.com/100x60/f7c5c5"  alt="board image" width=100px height=60px  /></td>
@@ -59,19 +48,29 @@
                 <script src="/js/hello.js"></script>
             </th:block>
         </div>
+    </div>
+
+    <!--  Modal  -->
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <p>this is the text inside the modal</p>
+        </div>
+    </div>
+</div>
 </div>
 <script>
     <!--  상세정보 페이지  -->
     $("tr").click(function() {
         $(this).addClass(".selected");
         const tr_id = $(this).data("id");
-        location.href="read?board_id=" + tr_id;
+     /*   location.href="read?board_id=" + tr_id;*/
     });
 
     /* 상세 창 뛰우기 */
-    function btn_info(){
-        // $(".board_info").show();
-    }
+    // function btn_info(){
+    //     $(".board_info").show();
+    // }
 
     /* 공유 창 닫기 BOX 밖에 클릭시 */
     $(document).mouseup(function(e){
@@ -84,6 +83,32 @@
     /* 공유 창 닫기 X button*/
     function btn_close(){
         $(".board_info").hide();
+    }
+    // 창
+    function showPopup(id) {
+        const popup = document.getElementsByClassName("board_info");
+        popup.style.display = 'block';
+
+    }
+
+    const modal = btn_info();
+
+//    Modal
+
+    let modalBtn = document.getElementsByClassName("tr_list_row")
+    let modal = document.querySelector(".modal")
+    let closeBtn = document.querySelector(".close-btn")
+
+    modalBtn.onclick = function(){
+        modal.style.display = "block"
+    }
+    closeBtn.onclick = function(){
+        modal.style.display = "none"
+    }
+    window.onclick = function(e){
+        if(e.target == modal){
+            modal.style.display = "none"
+        }
     }
 </script>
 </html>

@@ -16,49 +16,48 @@
     <link th:href="@{css/board_insert.css}" rel="stylesheet" />
   </th:block>
 
-  <!-- contento.html 고유 스크립트 추가 -->
-  <th:block layout:fragment="script">
-    <!--    <script>-->
-    <!--        alert("hello.html");-->
-    <!--    </script>-->
-  </th:block>
-<div class="body">
 
-  <div layout:fragment="content">
-    <div class="insert_box">
-      <div class="heading_row">
-        <div class="insert_heading">글쓰기</div>
-        <div class="button_wrapper">
-          <a href="/" class="cancel_button" onclick="onReset()">취소</a>
-          <a href="#" class="save_button" onclick="boardSubmit()">저장</a>
-        </div>
-      </div>
-      <div class="insert_body">
-        <div class="insert_body_content">
 
-          <!-- Board Insert Form -->
-          <form name="boardDTO" id="boardInsert" class="form" th:action="@{/boardinsert}" th:object="${boardDTO}"  method="post" enctype="multipart/form-data" >
-            <div class="insert_body_row1">
-              <label for="insert_title"></label>
-              <input type="text" name="insert_title" id="insert_title" class="form-component insert_box_text_title" th:field="*{title}" placeholder="제목을 입력하세요" required>
-              <input type="reset" value="reset" style="display:none" />
+  <div class="board_page">
+    <div th:replace="fragments/navbar"></div>
+    <div class = "board_body">
+      <div layout:fragment="content">
+        <div class="insert_box">
+          <div class="heading_row">
+            <div class="insert_heading">글쓰기</div>
+            <div class="button_wrapper">
+              <a href="/" class="cancel_button" onclick="onReset()">취소</a>
+              <a href="#" class="save_button" onclick="boardSubmit()">저장</a>
             </div>
-            <div class="insert_body_row2_wrapper">
-              <div class="insert_body_row2">
-                <input type="text" name="file_name" id="file_name" class="form-component insert_box_file_name" th:field="*{file_name}" placeholder="선택된 파일 없음" readonly>
-                <input type="file" name="file" path="board_image" id="input_file_btn" accept=".jpg, .png" style="display: none" />
+          </div>
+          <div class="insert_body">
+            <div class="insert_body_content">
 
-                <label for="file_name" >
-                  <a href="#" class="insert_img_button" onclick="uploadFile()">찾아보기..</a>
-                </label>
-              </div>
+              <!-- Board Insert Form -->
+              <form name="boardDTO" id="boardInsert" class="form" th:action="@{/boardinsert}" th:object="${boardDTO}"  method="post" enctype="multipart/form-data" >
+                <div class="insert_body_row1">
+                  <label for="insert_title"></label>
+                  <input type="text" name="insert_title" id="insert_title" class="form-component insert_box_text_title" th:field="*{title}" placeholder="제목을 입력하세요" required>
+                  <input type="reset" value="reset" style="display:none" />
+                </div>
+                <div class="insert_body_row2_wrapper">
+                  <div class="insert_body_row2">
+                    <input type="text" name="file_name" id="file_name" class="form-component insert_box_file_name" th:field="*{file_name}" placeholder="선택된 파일 없음" readonly>
+                    <input type="file" name="file" path="board_image" id="input_file_btn" accept=".jpg, .png" style="display: none" />
+
+                    <label for="file_name" >
+                      <a href="#" class="insert_img_button" onclick="uploadFile()">찾아보기..</a>
+                    </label>
+                  </div>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
   <script>
     //Retrieve value of input file and append to field
     $('input[type="file"]').change(function(e){
@@ -67,75 +66,26 @@
       $('input#file_name').val(fileName);
     })
   </script>
+
   <script>
-  //HTML LINK TO BUTTON CONVERSION
+    // HTML LINK -> BUTTON 함수
     function uploadFile(){
       const input = document.getElementById("input_file_btn")
       input.click();
-      // const filename = document.getElementById("input_file_btn").value;
-      // alert("filename : " + filename)
     }
-
+  // 게시글 저장 버턴
     function boardSubmit(){
       const title = document.getElementById("insert_title").value;
       const file_name = document.getElementById("input_file_btn").value;
-
       const submitBtn = document.getElementById("boardInsert");
 
-      // if(title ==""){
-      //   alert("내용을 입력하세요");
-      //   $("#boardInsert.insert_title").focus();
-      //   return;
-      // }
-      // alert("title + file_name : " + title + file_name);
       if(!confirm("게시글을 등록 하실래요?")) return;
       submitBtn.submit();
     }
-
+    // 취소 버턴
     function onReset() {
       location.href="/board_insert.html";
-      alert("reset")
     }
-
-    //파일명을 text field에 출력
-  //   function myFunction() {
-  //   const x = document.getElementById("input_file_btn").value;
-  //   document.getElementById("file_name").innerHTML = x;
-  // }
-    // function onReset() {
-    //   $(":reset").css("background-color", "#F98700");
-    // }
-  // $(document).ready(function onReset(){
-  //   $(":reset").css("background-color", "#F98700");
-  // });
-
-
-    // //Form reference
-    // const frm = $("#boardInsert")
-    //
-    // //Submit 버턴
-    // const submitBtm = document.getElementById("boardInsert");
-    //
-    // //field value
-    // const board_title = $("#boardInsert.insert_box_text_title").val();
-    // const file_name = $("#file_name").val();
-    // $("boardInsert.board_title")
-    // //Client-side 유효성 체크
-    // if (board_title == ""){
-    //   alert("내용을 입력해주세요!");
-    //   $("#boardDTO.board_title").focus();
-    //   return;
-    // }else if(file_name === ""){
-    //   alert("사진 하나 업로딩 해주세요!")
-    //   return;
-    // }
-    // if(!confirm("개사굴울 등록하실래요?")) return;
-    //
-    // submitBtm.submit();
-    // //사진 고르기
-    // function uploadBtn(){
-    //
-    // }
   </script>
 
 

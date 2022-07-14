@@ -35,44 +35,44 @@ public class FileBoardController {
     IBoardFileService boardFileService;
     @Autowired
     IBoardService boardService;
-    @RequestMapping("/insertProc")
-    private String fileBoardInsertProc(@ModelAttribute BoardFileDTO boardFileDTO, @RequestPart MultipartFile
-            files, HttpServletRequest request) throws IllegalStateException, IOException, Exception {
-
-        if(files.isEmpty()) {
-            boardFileService.insertBoardFile(boardFileDTO);
-        } else {
-            String fileName = files.getOriginalFilename(); // 사용자 컴에 저장된 파일명 그대로
-            //확장자
-            String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
-            File destinationFile; // DB에 저장할 파일 고유명
-            String destinationFileName;
-            //절대경로 설정 안해주면 지 맘대로 들어가버려서 절대경로 박아주었습니다.
-            String fileUrl = "file:///upload";
-            //절대 경로 설정 해줄것
-
-
-            do { //우선 실행 후
-                //고유명 생성
-                destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
-                destinationFile = new File(fileUrl + destinationFileName); //합쳐주기
-            } while (destinationFile.exists());
-
-            destinationFile.getParentFile().mkdirs(); //디렉토리
-            files.transferTo(destinationFile);
-
-            boardFileService.insertBoardFile(boardFileDTO);
-
-            BoardFileDTO file = new BoardFileDTO();
-            file.setBoard_id(boardFileDTO.getBoard_id());
-            file.setFile_name(destinationFileName);
-            file.setFileoriginname(fileName);
-            file.setFileurl(fileUrl);
-            boardFileService.insertBoardFile(boardFileDTO);
-        }
-
-        return "forward:/board_list"; //객체 재사용
-    }
+//    @RequestMapping("/insertProc")
+//    private String fileBoardInsertProc(@ModelAttribute BoardFileDTO boardFileDTO, @RequestPart MultipartFile
+//            files, HttpServletRequest request) throws IllegalStateException, IOException, Exception {
+//
+//        if(files.isEmpty()) {
+//            boardFileService.insertBoardFile(boardFileDTO);
+//        } else {
+//            String fileName = files.getOriginalFilename(); // 사용자 컴에 저장된 파일명 그대로
+//            //확장자
+//            String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
+//            File destinationFile; // DB에 저장할 파일 고유명
+//            String destinationFileName;
+//            //절대경로 설정 안해주면 지 맘대로 들어가버려서 절대경로 박아주었습니다.
+//            String fileUrl = "file:///upload";
+//            //절대 경로 설정 해줄것
+//
+//
+//            do { //우선 실행 후
+//                //고유명 생성
+//                destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
+//                destinationFile = new File(fileUrl + destinationFileName); //합쳐주기
+//            } while (destinationFile.exists());
+//
+//            destinationFile.getParentFile().mkdirs(); //디렉토리
+//            files.transferTo(destinationFile);
+//
+//            boardFileService.insertBoardFile(boardFileDTO);
+//
+//            BoardFileDTO file = new BoardFileDTO();
+//            file.setBoard_id(boardFileDTO.getBoard_id());
+//            file.setFile_name(destinationFileName);
+//            file.setFileoriginname(fileName);
+//            file.setFileurl(fileUrl);
+//            boardFileService.insertBoardFile(boardFileDTO);
+//        }
+//
+//        return "forward:/board_list"; //객체 재사용
+//    }
 
 //    @GetMapping("/download/{fileId}")
 //    public ResponseEntity<Resource> fileDownload(@PathVariable("fileId") Long fileId) throws IOException {

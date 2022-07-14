@@ -5,6 +5,22 @@
     display: flex;
     justify-content: center;
 }
+
+.board_body{
+    width : 1000px;
+    height : auto;
+    display: flex;
+    justify-content: center;
+}
+.board_page{
+    background-color: #eeeeee;
+    min-height: 1200px;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
 .insert_box{
     margin-top : 200px;
     width : 500px;

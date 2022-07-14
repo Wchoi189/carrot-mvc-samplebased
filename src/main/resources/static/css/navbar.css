@@ -1,7 +1,7 @@
 /* Menu bar. Index page */
-.menu{
+.header_nav{
     height : 60px;
-    width: 100%;
+    width: 1000px;
     background-color : #224263;
     color : white;
     display : flex;

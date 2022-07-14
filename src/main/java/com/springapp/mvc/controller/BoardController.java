@@ -21,12 +21,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -41,13 +39,12 @@ public class BoardController {
     @Autowired
     private BoardFileService boardFileService;
 
+    @Autowired
+    private ServletContext servletContext;
 
     @Autowired
-    ServletContext servletContext;
+    private ApplicationContext applicationContext;
 
-    @Autowired
-    ApplicationContext applicationContext;
-//    @RequestParam("board_id")
     @GetMapping("/")
     public ModelAndView boardList( Model model) {
         ModelAndView mav = new ModelAndView("board_list");
@@ -66,9 +63,9 @@ public class BoardController {
 
     @Valid
     @PostMapping("/boardinsert")
-    public String boardSubmit(@RequestParam CommonsMultipartFile file, HttpSession session, @Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result) {
+    public String boardSubmit(@RequestParam CommonsMultipartFile file, HttpSession session, @Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, HttpServletRequest request) {
         //컨트롤러 실행 여부
-        String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         System.out.println("Board controller insert method running..");
         // Empty 이다면 리턴. 조건은 BoardValidator에서 정의
         if (result.hasErrors()) {
@@ -80,9 +77,14 @@ public class BoardController {
             return "fail";
         }
         //RealPath =
-        String path = session.getServletContext().getContextPath();
+//        String path = session.getServletContext().getContextPath();
+        String path = servletContext.getRealPath(request.getContextPath());
+//        ServletContext context = session.getServletContext();
+
         String filename = file.getOriginalFilename();
-        System.out.println("path" + path + filename );
+
+        System.out.println("path"  + filename );
+        String save_path = path + "/" + filename;
 
 
         try {
@@ -92,8 +94,6 @@ public class BoardController {
             bout.write(barr);
             bout.flush();
             bout.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -106,7 +106,7 @@ public class BoardController {
 
             //DB에 저장
             System.out.println(boardDTO);
-            boardDTO.setSave_path(path+filename);
+            boardDTO.setSave_path(save_path);
             boardDTO.setReg_date(new Date());
             System.out.println(boardDTO);
             boardService.insertBoard(boardDTO);
