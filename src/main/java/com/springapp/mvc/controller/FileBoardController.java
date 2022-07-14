@@ -1,19 +1,31 @@
 package com.springapp.mvc.controller;
 
+import com.springapp.mvc.model.BoardDTO;
 import com.springapp.mvc.model.BoardFileDTO;
 import com.springapp.mvc.service.IBoardFileService;
+import com.springapp.mvc.service.IBoardService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
 
 @RequestMapping("/fileBoard")
 @Controller
@@ -21,6 +33,8 @@ public class FileBoardController {
 
     @Autowired
     IBoardFileService boardFileService;
+    @Autowired
+    IBoardService boardService;
     @RequestMapping("/insertProc")
     private String fileBoardInsertProc(@ModelAttribute BoardFileDTO boardFileDTO, @RequestPart MultipartFile
             files, HttpServletRequest request) throws IllegalStateException, IOException, Exception {
@@ -60,6 +74,16 @@ public class FileBoardController {
         return "forward:/board_list"; //객체 재사용
     }
 
+//    @GetMapping("/download/{fileId}")
+//    public ResponseEntity<Resource> fileDownload(@PathVariable("fileId") Long fileId) throws IOException {
+//        BoardDTO boardDTO= boardService.getBoardById(fileId);
+//        Path path = Paths.get(fileDto.getFilePath());
+//        Resource resource = new InputStreamResource(Files.newInputStream(path));
+//        return ResponseEntity.ok()
+//                .contentType(MediaType.parseMediaType("application/octet-stream"))
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDto.getOrigFilename() + "\"")
+//                .body(resource);
+//    }
 
 //    @Resource(name = "uploadPath")
 //    String path;

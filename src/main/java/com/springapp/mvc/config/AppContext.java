@@ -45,8 +45,9 @@ public class AppContext {
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setDefaultEncoding("UTF-8");
         //1 Megabyte = 1,000,000 bytes * 5 (MAX UPLOAD SIZE === 5MB)
-        multipartResolver.setMaxUploadSize(5000000);
+        multipartResolver.setMaxUploadSize(5 * 1024 * 1024);
         return multipartResolver;
     }
 //    @Bean

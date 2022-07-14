@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 public class BoardDTO {
-    private int board_id;
+    private Integer board_id;
     @NotNull(message ="title cannot be empty")
     @Size(min = 1, max= 15, message = "내용은 15문자를 초과 할  수 없습니다.")
     private String title;
@@ -32,11 +32,11 @@ public class BoardDTO {
 
 
 
-    public int getBoard_id() {
+    public Integer getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(Integer board_id) {
         this.board_id = board_id;
     }
 

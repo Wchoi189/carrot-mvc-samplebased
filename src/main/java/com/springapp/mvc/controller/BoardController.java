@@ -8,6 +8,7 @@ import com.springapp.mvc.service.impl.BoardFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -43,8 +45,11 @@ public class BoardController {
     @Autowired
     ServletContext servletContext;
 
+    @Autowired
+    ApplicationContext applicationContext;
+//    @RequestParam("board_id")
     @GetMapping("/")
-    public ModelAndView boardList(Model model) {
+    public ModelAndView boardList( Model model) {
         ModelAndView mav = new ModelAndView("board_list");
         List<BoardDTO> boardList = boardService.getBoardList();
         mav.addObject("boardList", boardList);
@@ -63,6 +68,7 @@ public class BoardController {
     @PostMapping("/boardinsert")
     public String boardSubmit(@RequestParam CommonsMultipartFile file, HttpSession session, @Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result) {
         //컨트롤러 실행 여부
+        String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
         System.out.println("Board controller insert method running..");
         // Empty 이다면 리턴. 조건은 BoardValidator에서 정의
         if (result.hasErrors()) {
@@ -73,11 +79,11 @@ public class BoardController {
             }
             return "fail";
         }
-
-        String path = session.getServletContext().getRealPath("/");
-        session.getServletContext().getContextPath();
+        //RealPath =
+        String path = session.getServletContext().getContextPath();
         String filename = file.getOriginalFilename();
-        System.out.println(path + " " + filename);
+        System.out.println("path" + path + filename );
+
 
         try {
             byte barr[] = file.getBytes();
@@ -112,4 +118,10 @@ public class BoardController {
         return "redirect:/";
     }
 
+    @GetMapping("read")
+    public String readBoardById (Model model, int board_id) {
+        BoardDTO boardread = boardService.getBoardById(board_id);
+        model.addAttribute("boardread", boardread );
+        return "board_read";
+    }
 }

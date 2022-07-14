@@ -23,13 +23,13 @@ public class BoardService implements IBoardService {
     }
 
     @Override
-    public BoardDTO getBoardById(int board_id) {
+    public BoardDTO getBoardById(Integer board_id) {
         BoardDTO boardDTO = mapper.getBoardById(board_id);
         return boardDTO;
     }
 
     @Override
-    public void deleteBoardById(int board_id) {
+    public void deleteBoardById(Integer board_id) {
         mapper.deleteBoardById(board_id);
     }
 

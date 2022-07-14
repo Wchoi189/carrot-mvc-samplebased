@@ -22,33 +22,68 @@
                 </div>
 
                 <div class="content_body">
+
                     <table class="table_board_list">
                         <thead class="th_board_list">
                             <th class="th_title">제목</th><th class="th_file">첨부파일</th><th class="th_date">작성 날짜</th>
                         </thead>
                         <tbody class="tbl_list_tbody">
+                        <!--*기본 설정 : 숨김(HIDE)  -->
+                        <div class="board_info">
+                            <div class="board_container">
+                                <div class="info_header_container">
+                                    <div class="info_header">Header Line</div>
+                                </div>
+                                <div class="info_body_container"><img src="https://via.placeholder.com/550x260/d3d3d3" alt="board_img_info" /></div>
+                                <div class="info_footer_container">
+                                    <div class="info_footer_content">
+                                        <a href="#" class="btn_close" onclick="btn_close()">닫기</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <tr th:if="${boardList.empty}">
                             <td colspan="2"> No Information Available </td>
-                        </tr>
-                        <tr th:each="boardList: ${boardList}" class="tr_list_row" >
+                        <tr th:each="boardList: ${boardList}" class="tr_list_row" onclick='btn_info()' th:data-id="${boardList.board_id}" >
+
                             <td th:text="${boardList.title}" class="td_list_title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat.</td>
-                            <td th:img="${boardList.save_path}" class="td_list_file"><img src="https://via.placeholder.com/100x60/f7c5c5" /></td>
+                            <td class="td_list_file"><img class="board_img_tag" th:if="${boardList.save_path}" th:src="'/'+ ${boardList.file_name}" /> <img th:unless="${boardList.save_path}" src="https://via.placeholder.com/100x60/f7c5c5"  alt="board image" width=100px height=60px  /></td>
                             <td th:text="${boardList.reg_date}"  class="td_list_date">2020.01.15</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
+
+
             <th:block layout:fragment="scripts">
                 <script src="/js/hello.js"></script>
             </th:block>
         </div>
 </div>
 <script>
+    <!--  상세정보 페이지  -->
     $("tr").click(function() {
-        // $(this).removeClass(".selected");
         $(this).addClass(".selected");
-        alert("tr clicked");
+        const tr_id = $(this).data("id");
+        location.href="read?board_id=" + tr_id;
     });
+
+    /* 상세 창 뛰우기 */
+    function btn_info(){
+        // $(".board_info").show();
+    }
+
+    /* 공유 창 닫기 BOX 밖에 클릭시 */
+    $(document).mouseup(function(e){
+        const container = $(".board_info")
+        if(!container.is(e.target) && container.has(e.target).length === 0){
+            container.hide();
+        }
+    });
+
+    /* 공유 창 닫기 X button*/
+    function btn_close(){
+        $(".board_info").hide();
+    }
 </script>
 </html>

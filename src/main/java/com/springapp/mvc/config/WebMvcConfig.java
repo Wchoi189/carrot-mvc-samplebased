@@ -1,5 +1,6 @@
 package com.springapp.mvc.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,6 +21,8 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
@@ -28,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 
 public class WebMvcConfig implements WebMvcConfigurer {
 
-
+  
     private ApplicationContext applicationContext;
     // + JSP View Resolver
     @Bean
@@ -80,10 +83,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
         WebMvcConfigurer.super.addResourceHandlers(registry);
+
         // Static Resources 설정
-        registry.addResourceHandler("/**","/resources/**")
-                .addResourceLocations("classpath:/static/","/resources/")
+        registry.addResourceHandler("/", "/**","/resources/**")
+                .addResourceLocations("/", "classpath:/static/","/resources/")
                 .setCacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES));
     }
     @Bean
@@ -98,5 +103,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public MultipartResolver multipartResolver() {
         return new CommonsMultipartResolver();
     }
+
 
 }
