@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @MapperScan("com.springapp.mvc.board.mapper")
+
 public class AppContext {
     @Bean("data")
     public DataSource dataSource() {

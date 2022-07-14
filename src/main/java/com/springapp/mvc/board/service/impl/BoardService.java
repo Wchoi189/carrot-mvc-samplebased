@@ -7,11 +7,13 @@ import com.springapp.mvc.board.model.BoardDTO;
 import com.springapp.mvc.board.service.IBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.ServletConfigAware;
 
+import javax.servlet.ServletConfig;
 import java.util.List;
 @Service("boardService")
 //@Repository
-public class BoardService implements IBoardService {
+public class BoardService implements IBoardService, ServletConfigAware {
 
     @Autowired
     BoardMapperJava mapper;
@@ -41,6 +43,11 @@ public class BoardService implements IBoardService {
     @Override
     public void insertBoard(BoardDTO theBoard) {
         mapper.insertBoard(theBoard);
+
+    }
+
+    @Override
+    public void setServletConfig(ServletConfig servletConfig) {
 
     }
 }

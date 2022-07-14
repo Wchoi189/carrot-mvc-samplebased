@@ -24,11 +24,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -80,13 +80,9 @@ public class BoardController {
             }
             return "fail";
         }
-        //RealPath =
-//        String path = session.getServletContext().getContextPath();
+        //RealPath
         String path = servletContext.getRealPath(request.getContextPath());
-//        ServletContext context = session.getServletContext();
-
         String filename = file.getOriginalFilename();
-
         System.out.println("path"  + filename );
         String save_path = path + "/" + filename;
 

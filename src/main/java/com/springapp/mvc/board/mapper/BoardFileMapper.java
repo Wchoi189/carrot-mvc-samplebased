@@ -2,12 +2,11 @@ package com.springapp.mvc.board.mapper;
 
 import com.springapp.mvc.board.model.BoardFileDTO;
 import org.apache.ibatis.annotations.*;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-@Configuration
-@Mapper
+//@Configuration
+//@Mapper
 public interface BoardFileMapper {
     @Select("SELECT * FROM file")
     List<BoardFileDTO> getBoardFileList();

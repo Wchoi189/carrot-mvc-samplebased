@@ -44,23 +44,12 @@
     </div>
 </div>
 </div>
+
 <script>
-    function createPopupWin(pageURL, pageTitle,
-                            popupWinWidth, popupWinHeight) {
-        const left = (screen.width ) ;
-        const top = (screen.height ) ;
-        const myWindow = window.open(pageURL, pageTitle,
-            'resizable=yes, width=' + popupWinWidth
-            + ', height=' + popupWinHeight + ', top='
-            + top + ', left=' + left);
-    }
-</script>
-<script>
-       $(".tr_list_row").click(function() {
+    //tr click
+    $(".tr_list_row").click(function() {
         const tr_id = $(this).data("id");
-        /*   location.href="read?board_id=" + tr_id;*/
-           // alert("id"+ tr_id);
-           window.open("read?board_id="+tr_id, '_blank', 'location=yes, height=400, width=450, top=300, right=50%, scrollbar=no, status=yes' );
+           window.open("read?board_id="+tr_id, '_blank', 'location=yes, height=400, width=450, top=300, left=400, scrollbar=no, status=yes' );
     });
 
     /* 공유 창 닫기 BOX 밖에 클릭시 */
@@ -76,42 +65,5 @@
         $(".board_info").hide();
     }
 
-    //모달창이 켜지게 하기
-    const modal = document.getElementsByClassName("tr_list_row");
-    const btnModal = document.getElementById("btn-modal");
-
-    $(".tr_list_row").on("click", function() {
-        alert("board id= " + id);
-        modal.style.display = "flex";
-    });
-
-    // X(클로즈) 버튼
-    const closeBtn = modal.querySelector(".close-area")
-    $(".closeBtn").on("click", function() {
-        modal.style.display = "none";
-    });
-
-    //모달창 바깥 영역
-    $(".modal").on("click", function(e)  {
-        const evTarget = e.target
-        if(evTarget.classList.contains("modal-overlay")) {
-            modal.style.display = "none";
-        }
-    });
-    //ESC 버튼을
-    window.on("click", function(e) {
-        if (modal.style.display === "flex" && e.key === "Escape") {
-            modal.style.display = "none";
-        }
-    });
-</script>
-
-<script type="text/javascript">
-    function showPopup(id) {
-        let w = window.innerWidth;
-        let h = window.innerHeight;
-        let popup = document.getElementById(id);
-        popup.style.display = 'block';
-    }
 </script>
 </html>
