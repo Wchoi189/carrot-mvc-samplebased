@@ -31,7 +31,7 @@
                         <div class="board_info">
                         </div>
                         <tr th:if="${boardList.empty}">
-                            <td colspan="2"> No Information Available </td>
+                            <td colspan="3"> 등록된 데이터가 없습니다. </td>
                         <tr th:each="boardList: ${boardList}" class="tr_list_row" th:data-id="${boardList.board_id}" >
                             <td th:text="${boardList.title}" class="td_list_title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat.</td>
                             <td class="td_list_file"><img class="board_img_tag" th:if="${boardList.save_path}" th:src="'/'+ ${boardList.file_name}" /> <img th:unless="${boardList.save_path}" src="https://via.placeholder.com/100x60/f7c5c5"  alt="board image" width=100px height=60px  /></td>
@@ -60,7 +60,7 @@
         const tr_id = $(this).data("id");
         /*   location.href="read?board_id=" + tr_id;*/
            // alert("id"+ tr_id);
-           window.open("read?board_id="+tr_id, '_blank', 'location=yes, height=400, width=450, top=300, right=700, scrollbar=no, status=yes' );
+           window.open("read?board_id="+tr_id, '_blank', 'location=yes, height=400, width=450, top=300, right=50%, scrollbar=no, status=yes' );
     });
 
     /* 공유 창 닫기 BOX 밖에 클릭시 */
@@ -105,6 +105,7 @@
         }
     });
 </script>
+
 <script type="text/javascript">
     function showPopup(id) {
         let w = window.innerWidth;

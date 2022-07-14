@@ -73,7 +73,6 @@
 .td_list_title{
     width : 250px;
     /*   border : 1px solid orange; */
-
     padding-left: 20px;
     padding-right: 20px;
     white-space: nowrap;
@@ -87,7 +86,6 @@
     align-items : center;
     /*   border : 1px solid red; */
     object-fit: contain;
-
 
 }
 .board_img_tag{
@@ -114,7 +112,7 @@
     display:none;
 }
 
-/*Modal*/
+/* Modal(테스팅 중) */
 #modal.modal-overlay {
     width: 100%;
     height: 100%;
