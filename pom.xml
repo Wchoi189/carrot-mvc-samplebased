@@ -5,7 +5,7 @@
     <artifactId>Carrot-Interview-Assignment</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>SpringDemo</name>
+    <name>SpringMVC-carrot</name>
 
     <properties>
         <spring.version>5.3.20</spring.version>

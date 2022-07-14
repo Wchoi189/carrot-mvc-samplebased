@@ -3,26 +3,37 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/board_default}">
+      layout:decorator="~{board_default.html}">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link th:href="@{css/board_default.css}" rel="stylesheet"/>
     <link th:href="@{css/navbar.css}" rel="stylesheet"/>
-    <title>Carrot-i Homepage</title>
-
-    <!-- 각 페이지의 script가 작성될 위치 -->
-    <th:block layout:fragment="script"></th:block>
-
-    <!-- 각 페이지의 css가 작성될 위치 -->
-    <th:block layout:fragment="css"></th:block>
+    <!--    <title>Carrot-i Homepage</title>-->
+    <!--  공통 페이지 제목. + 각 페이지 제목  -->
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Carrot-i Homepage</title>
 </head>
 
+<body>
 
-<div th:replace="fragments/navbar :: headerFragment">
-    Carrot-i Home Page
+<!--Header/Navbar-->
+<div th:replace="fragments/navbar.ht ml">
+    <div class="myLocation">
+        Carrot-i Homepage mylocation
+    </div>
 </div>
 
+<!--fragment container-->
+<section layout:fragment="list-page">
+    Hello Hello Hello
 
+</section>
+<!--static html-->
+
+<div class="testfooter">
+    Footer. Made by Woong. Testing.
+</div>
+
+</body>
 
 </html>

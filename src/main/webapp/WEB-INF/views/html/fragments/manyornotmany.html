@@ -2,14 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<html lang="en">
 <head>
-    <link th:href="@{css/navbar.css}" rel="stylesheet"/>
-    <link th:href="@{css/board_default.css}" rel="stylesheet"/>
-    <h3><div class="header_nav">Carrot-i Homepage</div></h3>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
-<div th:fragment="navbar"></div>
+<body>
+<section layout:fragment="many">
+    Too little
+</section>
 
-
-
+<section layout:fragment="notmany">
+    Too Many
+</section>
+</body>
 </html>

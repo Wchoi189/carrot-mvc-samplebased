@@ -38,10 +38,7 @@ public class AppContext {
         return new Java8TimeDialect();
     }
 
-    @Bean
-    public LayoutDialect layoutDialect() {
-        return new LayoutDialect();
-    }
+
 
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {

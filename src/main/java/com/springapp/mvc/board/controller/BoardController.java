@@ -4,7 +4,6 @@ package com.springapp.mvc.board.controller;
 import com.springapp.mvc.board.config.BoardValidator;
 import com.springapp.mvc.board.model.BoardDTO;
 import com.springapp.mvc.board.service.IBoardService;
-import com.springapp.mvc.board.service.impl.BoardFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +23,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -40,11 +39,7 @@ public class BoardController {
     @Autowired
     private BoardValidator boardValidator;
     @Autowired
-    private BoardFileService boardFileService;
-
-    @Autowired
     private ServletContext servletContext;
-
     @Autowired
     private ApplicationContext applicationContext;
 
@@ -65,6 +60,7 @@ public class BoardController {
         return mav;
     }
 
+    //폼으로 게시글 등록. action=/boardinsert method=post
     @Valid
     @PostMapping("/boardinsert")
     public String boardSubmit(@RequestParam CommonsMultipartFile file, HttpSession session, @Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, HttpServletRequest request) {
@@ -78,19 +74,18 @@ public class BoardController {
             for (FieldError fieldError : fieldErrors) {
                 System.out.println("Field errors : " + fieldError);
             }
+            //유효성 체크 실패 시 등록 실패 페이지로 이동
             return "fail";
         }
-        //RealPath =
-//        String path = session.getServletContext().getContextPath();
+        //저장 위치 = 포로젝트 경로에 임시 만들어진 경로(carrot-mvc-samplebased/target/)
         String path = servletContext.getRealPath(request.getContextPath());
-//        ServletContext context = session.getServletContext();
-
         String filename = file.getOriginalFilename();
 
+        //저장 경로 + 파일명 체크
         System.out.println("path"  + filename );
         String save_path = path + "/" + filename;
 
-
+        //실제 파일일 시스템으로 저장
         try {
             byte barr[] = file.getBytes();
             BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(path + "/" + filename));
@@ -101,18 +96,21 @@ public class BoardController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        //유효성 체크
+
+        //유효성 체크 : Title 문자 길이 < 16
         boardValidator = new BoardValidator();
         boardValidator.validate(boardDTO, result);
 
-
+        //DB에 저장
         try {
-
-            //DB에 저장
             System.out.println(boardDTO);
             boardDTO.setSave_path(save_path);
+
+            //현제 일자로 샌성
             boardDTO.setReg_date(new Date());
             System.out.println(boardDTO);
+
+            //쿼리문 실행해서 데이터베이스로 저장
             boardService.insertBoard(boardDTO);
 
         } catch (Exception e) {
@@ -122,6 +120,7 @@ public class BoardController {
         return "redirect:/";
     }
 
+    //상세정보 페이지
     @GetMapping("read")
     public String readBoardById (Model model, int board_id) {
         BoardDTO boardread = boardService.getBoardById(board_id);

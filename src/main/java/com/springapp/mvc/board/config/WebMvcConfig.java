@@ -1,5 +1,6 @@
 package com.springapp.mvc.board.config;
 
+import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.springapp.mvc")
+@ComponentScan("com.springapp.mvc.board")
 
 public class WebMvcConfig implements WebMvcConfigurer {
 
@@ -40,35 +41,33 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return viewResolver;
     }
 
-    /*
-     * STEP 1 - Create SpringResourceTemplateResolver
-     * */
+//    * HTML 뷰만 사용
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views/html/");
+        templateResolver.setPrefix("/WEB-INF/views/html/templates/");
+//        templateResolver.setPrefix("/WEB-INF/views/html/fragments");
+//        templateResolver.setPrefix("/WEB-INF/views/html/layouts");
+//        templateResolver.setPrefix("/WEB-INF/views/html/");
+
         templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("utf-8");
         templateResolver.setCacheable(false);
         return templateResolver;
     }
+    // 타임리프 레이아웃 기능
 
-    /*
-     * STEP 2 - Create SpringTemplateEngine
-     * */
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.setDialect(new LayoutDialect());
         templateEngine.setEnableSpringELCompiler(true);
-
         return templateEngine;
     }
 
-    /*
-     * STEP 3 - Register ThymeleafViewResolver
-     * */
+    // 타임리크 뷰 기능 활성화 + 한글 깸 예방
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
@@ -77,7 +76,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.viewResolver(resolver);
 
     }
-
+    // 정적 자원 위치 선언
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
@@ -94,6 +93,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
             engine.addDialect(new Java8TimeDialect());
             engine.setTemplateResolver(templateResolver);
             return engine;
+    }
+
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
     }
     //to provide multipart resolver which can resolve files sent as multipart-request
     @Bean
