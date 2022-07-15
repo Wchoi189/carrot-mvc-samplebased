@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,21 +72,12 @@ public class BoardController {
 
     @Valid
     @PostMapping("/boardinsert")
-    public String boardSubmit(@RequestParam CommonsMultipartFile file, HttpSession session, @Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, HttpServletRequest request) {
+    public String boardSubmit(@RequestParam CommonsMultipartFile file, @Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, HttpServletRequest request) {
         //컨트롤러 실행 여부
         System.out.println("Board controller insert method running..");
 
-        //Test
-        Random random = new Random();
-        System.out.println("random number test: " + random);
-
-        //Number generator
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-        String unique_id = String.format("%s.%s", sdf.format( new Date() ),
-                random.nextInt(9));
-
-
         // Empty 이다면 리턴. 조건은 BoardValidator에서 정의
+
         if (result.hasErrors()) {
             List<FieldError> fieldErrors = result.getFieldErrors();
             String title = boardDTO.getTitle();
@@ -95,12 +87,24 @@ public class BoardController {
             return "fail";
         }
 
+
+        //Test
+        Random random = new Random();
+        System.out.println("random number test: " + random);
+
+        //Number generator
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh");
+        String unique_id = String.format("%s.%s", sdf.format( new Date() ),
+                random.nextInt(9));
+        System.out.println("uniqueid:" + unique_id);
+
         //RealPath
         String path = servletContext.getRealPath(request.getContextPath());
-        String filename = file.getOriginalFilename();
+        String filename =  random + unique_id + file.getOriginalFilename();
 
         //Unique Identifier for filenames
-        String save_path = path + unique_id + filename;
+
+        String save_path = path + filename;
         System.out.println(save_path);
 
 
@@ -123,6 +127,7 @@ public class BoardController {
 
             //DB에 저장
             System.out.println(boardDTO);
+            boardDTO.setFile_name(filename);
             boardDTO.setSave_path(save_path);
             boardDTO.setReg_date(new Date());
             System.out.println(boardDTO);

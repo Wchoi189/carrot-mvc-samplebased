@@ -1,5 +1,6 @@
 package com.springapp.mvc.board.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,11 +14,10 @@ public class BoardDTO {
     @NotNull(message ="title cannot be empty")
     @Size(min = 1, max= 15, message = "내용은 15문자를 초과 할  수 없습니다.")
     private String title;
-//    @NotNull(message ="file must be uploaded")
+    @NotNull(message ="file must be uploaded")
     private String file_name;
     private String save_path;
-//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
-    @DateTimeFormat(pattern = "yyyy.MM.dd")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
     private Date reg_date;
 
     public MultipartFile getBoard_image() {

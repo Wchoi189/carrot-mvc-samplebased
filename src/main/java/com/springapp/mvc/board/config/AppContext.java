@@ -8,12 +8,14 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
 import javax.sql.DataSource;
 
 @Configuration
+@Import(WebMvcConfig.class)
 @MapperScan("com.springapp.mvc.board.mapper")
 
 public class AppContext {
