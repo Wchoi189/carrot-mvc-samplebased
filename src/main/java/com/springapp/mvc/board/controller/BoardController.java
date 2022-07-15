@@ -5,6 +5,7 @@ import com.springapp.mvc.board.config.BoardValidator;
 import com.springapp.mvc.board.model.BoardDTO;
 import com.springapp.mvc.board.service.IBoardService;
 import com.springapp.mvc.board.service.impl.BoardFileService;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+
+
 
 @Controller
 public class BoardController {
@@ -69,8 +73,18 @@ public class BoardController {
     @PostMapping("/boardinsert")
     public String boardSubmit(@RequestParam CommonsMultipartFile file, HttpSession session, @Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, HttpServletRequest request) {
         //컨트롤러 실행 여부
-        String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         System.out.println("Board controller insert method running..");
+
+        //Test
+        Random random = new Random();
+        System.out.println("random number test: " + random);
+
+        //Number generator
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String unique_id = String.format("%s.%s", sdf.format( new Date() ),
+                random.nextInt(9));
+
+
         // Empty 이다면 리턴. 조건은 BoardValidator에서 정의
         if (result.hasErrors()) {
             List<FieldError> fieldErrors = result.getFieldErrors();
@@ -80,11 +94,14 @@ public class BoardController {
             }
             return "fail";
         }
+
         //RealPath
         String path = servletContext.getRealPath(request.getContextPath());
         String filename = file.getOriginalFilename();
-        System.out.println("path"  + filename );
-        String save_path = path + "/" + filename;
+
+        //Unique Identifier for filenames
+        String save_path = path + unique_id + filename;
+        System.out.println(save_path);
 
 
         try {
