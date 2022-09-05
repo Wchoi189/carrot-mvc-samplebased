@@ -18,7 +18,7 @@ public class BoardDTO {
     private String file_name;
     private String save_path;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
-    private Date reg_date;
+    private String reg_date;
 
     public MultipartFile getBoard_image() {
         return board_image;
@@ -64,11 +64,11 @@ public class BoardDTO {
         this.save_path = save_path;
     }
 
-    public Date getReg_date() {
+    public String getReg_date() {
         return reg_date;
     }
 
-    public void setReg_date(Date reg_date) {
+    public void setReg_date(String reg_date) {
         this.reg_date = reg_date;
     }
 

@@ -4,7 +4,6 @@ package com.springapp.mvc.board.service.impl;
 
 import com.springapp.mvc.board.mapper.BoardMapperJava;
 import com.springapp.mvc.board.model.BoardDTO;
-import com.springapp.mvc.board.service.IBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.ServletConfigAware;
@@ -13,7 +12,7 @@ import javax.servlet.ServletConfig;
 import java.util.List;
 @Service("boardService")
 //@Repository
-public class BoardService implements IBoardService, ServletConfigAware {
+public class BoardDao implements com.springapp.mvc.board.dao.BoardDao, ServletConfigAware {
 
     @Autowired
     BoardMapperJava mapper;
@@ -42,6 +41,8 @@ public class BoardService implements IBoardService, ServletConfigAware {
 
     @Override
     public void insertBoard(BoardDTO theBoard) {
+
+
         mapper.insertBoard(theBoard);
 
     }

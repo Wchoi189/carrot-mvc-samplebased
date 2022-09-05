@@ -5,10 +5,10 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
@@ -17,15 +17,28 @@ import javax.sql.DataSource;
 @Configuration
 @Import(WebMvcConfig.class)
 @MapperScan("com.springapp.mvc.board.mapper")
-
+@PropertySource("classpath:db.properties")
 public class AppContext {
+
+    private static final Logger log = LoggerFactory.getLogger(AppContext.class);
+
+    //db.properties
+    @Value("${db.driver}")
+    String driver;
+    @Value("${db.url}")
+    String url;
+    @Value("${db.username}")
+    String username;
+    @Value("${db.password}")
+    String password;
+
     @Bean("data")
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
-        dataSource.setUrl("jdbc:log4jdbc:mariadb://127.0.0.1:3306/interview_assignment_db?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC");
-        dataSource.setUsername("user");
-        dataSource.setPassword("pass");
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
         dataSource.setDefaultAutoCommit(false);
         return dataSource;
 

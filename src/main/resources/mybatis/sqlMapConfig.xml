@@ -10,6 +10,6 @@
         <typeAlias alias="hashmap" type="java.util.HashMap" />
         <typeAlias alias="Int" type="java.lang.Integer" />
         <typeAlias alias="Board" type="com.springapp.mvc.board.model.BoardDTO"/>
-        <typeAlias alias="BoardNS" type="com.springapp.mvc.board.service.IBoardService"/>
+        <typeAlias alias="BoardNS" type="com.springapp.mvc.board.dao.BoardDao"/>
     </typeAliases>
 </configuration>

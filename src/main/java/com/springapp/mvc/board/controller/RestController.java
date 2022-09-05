@@ -1,6 +1,6 @@
 package com.springapp.mvc.board.controller;
 
-import com.springapp.mvc.board.service.IBoardService;
+import com.springapp.mvc.board.dao.BoardDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,7 +10,7 @@ import java.util.HashMap;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
     @Autowired
-    private IBoardService boardService;
+    private BoardDao boardService;
 
 
 

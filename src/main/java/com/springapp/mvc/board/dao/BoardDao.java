@@ -1,4 +1,4 @@
-package com.springapp.mvc.board.service;
+package com.springapp.mvc.board.dao;
 
 
 import com.springapp.mvc.board.model.BoardDTO;
@@ -6,7 +6,7 @@ import com.springapp.mvc.board.model.BoardDTO;
 import java.util.List;
 
 
-public interface IBoardService {
+public interface BoardDao {
 List<BoardDTO> getBoardList();
 void insertBoard(BoardDTO theBoard);
 BoardDTO getBoardById(Integer board_id);
