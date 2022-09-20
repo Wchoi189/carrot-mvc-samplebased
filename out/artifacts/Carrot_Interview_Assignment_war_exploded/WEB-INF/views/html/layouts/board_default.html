@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/board_default}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{css/board_default.css}" rel="stylesheet"/>
+    <link th:href="@{css/navbar.css}" rel="stylesheet"/>
+    <title>Carrot-i Homepage</title>
+
+    <!-- 각 페이지의 script가 작성될 위치 -->
+    <th:block layout:fragment="script"></th:block>
+
+    <!-- 각 페이지의 css가 작성될 위치 -->
+    <th:block layout:fragment="css"></th:block>
+</head>
+
+
+<div th:replace="fragments/navbar :: headerFragment">
+    Carrot-i Home Page
+</div>
+
+
+
+</html>

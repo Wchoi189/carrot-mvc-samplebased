@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--JUNIT 전용-->
+
+ <!--TYPEALIAS 설정 DOES NOT WORK!!-->
+<configuration>
+    <!--    VO객체 설정-->
+    <typeAliases>
+        <typeAlias alias="hashmap" type="java.util.HashMap" />
+        <typeAlias alias="Int" type="java.lang.Integer" />
+        <typeAlias alias="Board" type="com.springapp.mvc.board.model.BoardDTO"/>
+        <typeAlias alias="BoardNS" type="com.springapp.mvc.board.service.IBoardService"/>
+    </typeAliases>
+</configuration>

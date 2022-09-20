@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<script src=https://code.jquery.com/jquery-3.6.0.js></script>
+<!-- jQuery Validation Plugin-->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+  <title>목록</title>
+  <!-- content.html 고유 CSS 추가 -->
+  <th:block layout:fragment="css">
+    <link th:href="@{css/board_insert.css}" rel="stylesheet" />
+  </th:block>
+
+
+
+  <div class="board_page">
+    <div th:replace="fragments/navbar"></div>
+    <div class = "board_body">
+      <div layout:fragment="content">
+        <div class="insert_box">
+          <div class="heading_row">
+            <div class="insert_heading">글쓰기</div>
+            <div class="button_wrapper">
+              <a href="/" class="cancel_button" onclick="onReset()">취소</a>
+              <a href="#" class="save_button" onclick="boardSubmit()">저장</a>
+            </div>
+          </div>
+          <div class="insert_body">
+            <div class="insert_body_content">
+
+              <!-- Board Insert Form -->
+              <form name="boardDTO" id="boardInsert" class="form" th:action="@{/boardinsert}" th:object="${boardDTO}"  method="post" enctype="multipart/form-data" >
+                <div class="insert_body_row1">
+                  <label for="insert_title"></label>
+                  <input type="text" name="insert_title" id="insert_title" class="form-component insert_box_text_title" th:field="*{title}" placeholder="제목을 입력하세요" required>
+                  <input type="reset" value="reset" style="display:none" />
+                </div>
+                <div class="insert_body_row2_wrapper">
+                  <div class="insert_body_row2">
+                    <input type="text" name="file_name" id="file_name" class="form-component insert_box_file_name" th:field="*{file_name}" placeholder="선택된 파일 없음" readonly>
+                    <input type="file" name="file" path="board_image" id="input_file_btn" accept=".jpg, .png, .jpeg" style="display: none" />
+
+                    <label for="file_name" >
+                      <a href="#" class="insert_img_button" onclick="uploadFile()">찾아보기..</a>
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    //Retrieve value of input file and append to field
+    $('input[type="file"]').change(function(e){
+      let fileName = e.target.files[0].name;
+      // alert("fileName : " + fileName);
+      $('input#file_name').val(fileName);
+    })
+  </script>
+
+  <script>
+
+    // HTML LINK -> BUTTON 함수
+    function uploadFile(){
+      const input = document.getElementById("input_file_btn")
+      input.click();
+    }
+
+    // 게시글 저장 버턴
+    function boardSubmit(){
+      const title = document.getElementById("insert_title").value;
+      const file_name = document.getElementById("input_file_btn").value;
+      const submitBtn = document.getElementById("boardInsert");
+
+      //글자 수 + 파일 업로드 유효성 체크
+      if(title==="") {
+        alert("게시글 내용을 입력 해주세요!");
+        $("#insert_title").focus();
+        return;
+      }else if (title.length > 15){
+        alert("게시글 제목은 15자 넘을 수 없습니다!");
+        $("#insert_title").focus();
+        return;
+      }else if (file_name==="") {
+        alert("이미지를 업로그 해주세요!");
+        $("#input_file_btn").focus();
+        return;
+      }
+      if(!confirm("게시글을 등록 하실래요?")) return;
+      submitBtn.submit();
+    }
+
+    // 취소 버턴 === 목록 페이지로 이동
+    function onReset() {
+      location.href="/board_insert.html";
+    }
+  </script>
+
+
+</html>

@@ -40,6 +40,7 @@ import java.util.Random;
 @Controller
 public class BoardController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
     @Autowired
     private IBoardService boardService;
     @Autowired
@@ -75,7 +76,7 @@ public class BoardController {
     public String boardSubmit(@RequestParam CommonsMultipartFile file, @Valid @ModelAttribute("boardDTO") BoardDTO boardDTO, BindingResult result, HttpServletRequest request) {
         //컨트롤러 실행 여부
         System.out.println("Board controller insert method running..");
-
+        String theDate = sdf.format(new Date());
         // Empty 이다면 리턴. 조건은 BoardValidator에서 정의
 
         if (result.hasErrors()) {
@@ -93,7 +94,7 @@ public class BoardController {
         System.out.println("random number test: " + random);
 
         //Number generator
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh");
+
         String unique_id = String.format("%s.%s", sdf.format( new Date() ),
                 random.nextInt(9));
         System.out.println("uniqueid:" + unique_id);
@@ -129,7 +130,7 @@ public class BoardController {
             System.out.println(boardDTO);
             boardDTO.setFile_name(filename);
             boardDTO.setSave_path(save_path);
-            boardDTO.setReg_date(new Date());
+            boardDTO.setReg_date(theDate);
             System.out.println(boardDTO);
             boardService.insertBoard(boardDTO);
 

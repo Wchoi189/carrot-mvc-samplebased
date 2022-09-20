@@ -1,0 +1,11 @@
+/* Menu bar. Index page */
+.header_nav{
+    height : 60px;
+    width: 1000px;
+    background-color : #224263;
+    color : white;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    box-sizing: border-box;
+}

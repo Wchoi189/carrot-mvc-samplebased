@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+    <title>상세 페이지</title>
+    <link th:href="@{css/board_read.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<div class="board_info">
+    <div class="board_container" th:each="boardread: ${boardread}">
+        <div class="info_header_container">
+            <div class="info_header" th:text="${boardread.title}">Header Line</div>
+        </div>
+        <div class="info_body_container">
+            <img th:src="${(boardread.save_path != null ? '/' + boardread.file_name : 'https://via.placeholder.com/550x260/d3d3d3')}" class="board_img_tag"/></div>
+        <div class="info_footer_container">
+            <div class="info_footer_content">
+                <a href="#" class="btn_close" onclick="window.close()">닫기</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+</script>
+</html>
